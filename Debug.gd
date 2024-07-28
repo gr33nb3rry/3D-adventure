@@ -10,3 +10,5 @@ func _process(_delta):
 	text += str($/root/World/Player.jump_status)
 	text += '\n'
 	text += str($/root/World/Player.last_y_velocity)
+	text += '\n'
+	text += str($/root/World/Player.ray_distance)

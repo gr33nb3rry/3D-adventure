@@ -17,6 +17,7 @@ var rotation_speed := 8
 
 var jump_status := 0 # 0 - IDLE  1 - JUMP  2 - FALLING  3 - IDLE HEAVY
 var last_y_velocity := 0.0
+var ray_distance : float
 
 var moving_path := "parameters/Moving/blend_position"
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -56,7 +57,7 @@ func _physics_process(delta):
 		var target_rotation = atan2(direction.x, direction.z) - player_init_rotation
 		$Model.rotation.y = lerp_angle($Model.rotation.y, target_rotation, rotation_speed * delta)
 		
-
+	ray_distance = $RayCastDown.global_transform.origin.distance_to($RayCastDown.get_collision_point())
 	change_velocity(direction, delta)
 	move_and_slide()
 
@@ -91,7 +92,8 @@ func jump():
 	await get_tree().create_timer(0.1).timeout
 	jump_status = 2
 func falling():
-	if velocity.y <= -5.0:
+	if ray_distance >= 3.0:
+	#if velocity.y <= -5.0:
 		is_able_to_jump = false
 		jump_status = 2
 func landing():
