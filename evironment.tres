@@ -2,7 +2,7 @@
 
 [sub_resource type="Gradient" id="Gradient_jx8rg"]
 offsets = PackedFloat32Array(0, 0.162162, 0.84556, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.0823529, 0.145098, 1, 0.92, 0.843947, 0.7728, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0.0823529, 0.145098, 1, 0.921569, 0.843137, 0.768627, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_bxeca"]
 gradient = SubResource("Gradient_jx8rg")
@@ -13,6 +13,7 @@ sky_energy_multiplier = 11.0
 
 [sub_resource type="Sky" id="Sky_afcab"]
 sky_material = SubResource("ProceduralSkyMaterial_lvka5")
+process_mode = 3
 
 [resource]
 background_mode = 2
@@ -42,7 +43,8 @@ glow_levels/4 = 1.0
 glow_levels/6 = 1.0
 glow_normalized = true
 glow_intensity = 0.1
-glow_blend_mode = 1
+glow_bloom = 0.2
+glow_blend_mode = 0
 fog_enabled = true
 fog_light_color = Color(0.752941, 0.72549, 0.686275, 1)
 fog_light_energy = 0.3

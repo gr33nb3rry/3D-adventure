@@ -4,7 +4,7 @@
 [ext_resource type="Material" uid="uid://bqm73egw6whwh" path="res://materials/mat_wood.tres" id="2_uuvor"]
 [ext_resource type="PackedScene" uid="uid://d0qm3am86wplc" path="res://player.tscn" id="3_pp3ul"]
 [ext_resource type="Material" uid="uid://freibvmh272w" path="res://materials/mat_rock.tres" id="4_ggr33"]
-[ext_resource type="Environment" uid="uid://sj2tidru2pyn" path="res://evironment.tres" id="5_hwte4"]
+[ext_resource type="Environment" uid="uid://sj2tidru2pyn" path="res://evironment.tres" id="5_0pjmq"]
 [ext_resource type="Script" path="res://Debug.gd" id="6_b2ol4"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_877jt"]
@@ -254,6 +254,7 @@ _data = {
 
 [node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.827494, -0.525232, -0.198456, 0.130272, -0.523409, 0.842064, -0.546153, 0.67095, 0.501541, -8.32757, 18.9034, -0.734358)
+visible = false
 light_color = Color(0.897633, 0.947255, 0.98337, 1)
 light_energy = 0.0
 light_indirect_energy = 0.5
@@ -264,18 +265,21 @@ shadow_blur = 4.0
 directional_shadow_max_distance = 95.0
 
 [node name="MainLight" type="Node3D" parent="."]
-transform = Transform3D(-0.777972, -0.621759, 0.0904086, -0.0422287, 0.195313, 0.979831, -0.626878, 0.758463, -0.178204, 0, 0, 0)
+transform = Transform3D(-0.776643, -0.627908, -0.0505626, 0.0236172, -0.109232, 0.993735, -0.629498, 0.770582, 0.0996639, 0, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainLight"]
 transform = Transform3D(1, 0, 0, 0, 0.928486, -0.371368, 0, 0.371368, 0.928486, 29.2168, 0, 0)
 light_color = Color(0.990617, 0.822868, 0.817041, 1)
-light_energy = 11.2975
+light_energy = 12.2488
 light_indirect_energy = 0.5
 light_volumetric_fog_energy = 2.0
 shadow_enabled = true
 shadow_bias = 0.008
 shadow_blur = 2.0
 directional_shadow_max_distance = 95.0
+
+[node name="Player" parent="." instance=ExtResource("3_pp3ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.10109, 1.29009, -4.75945)
 
 [node name="Level" type="Node3D" parent="."]
 
@@ -365,9 +369,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Vent3/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ylmhk")
 
-[node name="Player" parent="." instance=ExtResource("3_pp3ul")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.99656, 8.52378, -10.1181)
-
 [node name="rockbig" type="Node3D" parent="."]
 transform = Transform3D(0.281387, 0, 0.959594, 0, 1, 0, -0.959594, 0, 0.281387, -7.49056, 7.64846, 14.3164)
 
@@ -432,13 +433,12 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_hcwt6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("5_hwte4")
+environment = ExtResource("5_0pjmq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hn6cp")
 }
-autoplay = "day_night"
 speed_scale = 0.1
 
 [node name="Canvas2" type="CanvasLayer" parent="."]
@@ -446,4 +446,8 @@ speed_scale = 0.1
 [node name="Debug" type="Label" parent="Canvas2"]
 offset_right = 40.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0.98959, 0.447056, 1)
+theme_override_colors/font_outline_color = Color(9.02452e-08, 0.173344, 0.10345, 1)
+theme_override_constants/outline_size = 8
+text = "PISKA"
 script = ExtResource("6_b2ol4")
