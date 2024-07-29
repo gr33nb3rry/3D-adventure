@@ -175,7 +175,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("MainLight:rotation")
+tracks/0/path = NodePath("Sun:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -187,7 +187,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MainLight/DirectionalLight3D:light_color")
+tracks/1/path = NodePath("Sun/SunLight:light_color")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -199,7 +199,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MainLight/DirectionalLight3D:light_energy")
+tracks/2/path = NodePath("Sun/SunLight:light_energy")
 tracks/2/interp = 2
 tracks/2/loop_wrap = false
 tracks/2/keys = {
@@ -235,7 +235,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("DirectionalLight3D2:light_energy")
+tracks/5/path = NodePath("MoonLight:light_energy")
 tracks/5/interp = 1
 tracks/5/loop_wrap = false
 tracks/5/keys = {
@@ -252,9 +252,8 @@ _data = {
 
 [node name="World" type="Node3D"]
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+[node name="MoonLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.827494, -0.525232, -0.198456, 0.130272, -0.523409, 0.842064, -0.546153, 0.67095, 0.501541, -8.32757, 18.9034, -0.734358)
-visible = false
 light_color = Color(0.897633, 0.947255, 0.98337, 1)
 light_energy = 0.0
 light_indirect_energy = 0.5
@@ -264,10 +263,10 @@ shadow_bias = 0.008
 shadow_blur = 4.0
 directional_shadow_max_distance = 95.0
 
-[node name="MainLight" type="Node3D" parent="."]
+[node name="Sun" type="Node3D" parent="."]
 transform = Transform3D(-0.776643, -0.627908, -0.0505626, 0.0236172, -0.109232, 0.993735, -0.629498, 0.770582, 0.0996639, 0, 0, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="MainLight"]
+[node name="SunLight" type="DirectionalLight3D" parent="Sun"]
 transform = Transform3D(1, 0, 0, 0, 0.928486, -0.371368, 0, 0.371368, 0.928486, 29.2168, 0, 0)
 light_color = Color(0.990617, 0.822868, 0.817041, 1)
 light_energy = 12.2488

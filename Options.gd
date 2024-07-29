@@ -30,13 +30,14 @@ func update_quality() -> void:
 		"positional_shadow_sizes": [2048, 4096, 4096, 8192, 16384],
 		"directional_shadow_filters": [3, 3, 4, 4, 5],
 		"positional_shadow_filters": [1, 1, 2, 3, 4],
-		"volumetric_fog": [false, true, true, true, true],
+		"volumetric_fog": [true, true, true, true, true],
 		"volumetric_fog_sizes": [32, 32, 64, 128, 256],
-		"volumetric_fog_filter": [false, false, false, true, true],
+		"volumetric_fog_filter": [false, false, true, true, true], # HARD
 		"bicubic_glow": [false, false, false, true, true], # (?)
 		"ssil": [false, false, true, true, true],
 		"sdfgi_ray_counts": [0, 1, 1, 2, 3],
 		"sdfgi_cascades": [2, 3, 3, 4, 4],
+		"sdfgi": [false, true, true, true, true],
 		"taa": [false, false, true, true, true]
 	}
 		
@@ -53,6 +54,13 @@ func update_quality() -> void:
 	$/root/World/WorldEnvironment.environment.ssil_enabled = quality_settings["ssil"][quality_level]
 	RenderingServer.environment_set_sdfgi_ray_count(quality_settings["sdfgi_ray_counts"][quality_level])
 	$/root/World/WorldEnvironment.environment.sdfgi_cascades = quality_settings["sdfgi_cascades"][quality_level]
+	$/root/World/WorldEnvironment.environment.sdfgi_enabled = quality_settings["sdfgi"][quality_level]
+	if $/root/World/WorldEnvironment.environment.sdfgi_enabled:
+		$/root/World/Sun/SunLight.shadow_opacity = 1
+		$/root/World/MoonLight.shadow_opacity = 1
+	else:
+		$/root/World/Sun/SunLight.shadow_opacity = 0.85
+		$/root/World/MoonLight.shadow_opacity = 0.85
 	get_viewport().use_taa = quality_settings["taa"][quality_level]
 	
 func update_fxaa():
