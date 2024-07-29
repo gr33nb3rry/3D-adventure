@@ -17,6 +17,7 @@ process_mode = 3
 
 [resource]
 background_mode = 2
+background_energy_multiplier = 0.0
 sky = SubResource("Sky_afcab")
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
@@ -46,7 +47,7 @@ glow_intensity = 0.1
 glow_bloom = 0.2
 glow_blend_mode = 0
 fog_enabled = true
-fog_light_color = Color(0.752941, 0.72549, 0.686275, 1)
+fog_light_color = Color(0.501961, 0.627451, 0.517647, 1)
 fog_light_energy = 0.3
 fog_sun_scatter = 0.24
 fog_density = 0.0008

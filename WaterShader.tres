@@ -12,7 +12,7 @@ constant = 0.8
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_2ti6r"]
 
 [sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_0w66x"]
-default_input_values = [0, 0.5]
+default_input_values = [0, 10.0]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_wilgj"]
 function = 31
@@ -230,7 +230,7 @@ void fragment() {
 
 	float n_out14p0;
 // ProximityFade:14
-	float n_in14p0 = 0.50000;
+	float n_in14p0 = 10.00000;
 	{
 		float __depth_tex = texture(depth_tex_frg_14, SCREEN_UV).r;
 		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
@@ -296,7 +296,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-838.643, 237.296)
+graph_offset = Vector2(-2697.34, -394.345)
 nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_6lio0")
 nodes/vertex/2/position = Vector2(-500, -340)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_lnmuq")
