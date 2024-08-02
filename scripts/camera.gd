@@ -23,7 +23,7 @@ var is_aiming := false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#spring_arm.add_excluded_object(player.get_rid())
+	spring_arm.add_excluded_object(player.get_rid())
 	#top_level = true
 	arm.start()
 	$"../Model/Node/Skeleton3D/HandIK".start()
@@ -56,12 +56,15 @@ func _physics_process(delta):
 	
 func aim(value:bool):
 	var camera_tween = get_tree().create_tween()
+	var tween_time := 0.25
+	var is_first_person := false
 	camera_tween.set_parallel(true)
-	#camera.position.z = -0.25 if value else 2.5
-	#$CamYaw/CamPitch/SpringArm3D.spring_length = 0 if value else 3
-	#position_offset_target = Vector3(0, 0.666, 0) if value else Vector3(0, 1, 0)
-	#camera_tween.tween_property($CamYaw/CamPitch/SpringArm3D, "global_position", $"../FP".global_position if value else Vector3.ZERO, 0.25)
-	#camera_tween.tween_property(camera, "h_offset", 0.9 if value else 0, 0.25)
-	#camera_tween.tween_property(camera, "fov", 55 if value else 75, 0.25)
-	camera_tween.tween_property(arm, "interpolation", 1 if value else 0, 0.25)
+	if is_first_person:
+		camera_tween.tween_property($CamYaw/CamPitch/SpringArm3D, "spring_length", 0 if value else 3, tween_time)
+		camera_tween.tween_property($CamYaw/CamPitch/SpringArm3D, "position:z", 0.4 if value else 0, tween_time)
+		camera_tween.tween_property(self, "position:y", 0.7 if value else 1, tween_time)
+	else:
+		camera_tween.tween_property(camera, "h_offset", 0.9 if value else 0, tween_time)
+		camera_tween.tween_property(camera, "fov", 55 if value else 75, tween_time)
+	camera_tween.tween_property(arm, "interpolation", 1 if value else 0, tween_time)
 	$/root/World/Canvas/CenterContainer/Crosshair.visible = value
