@@ -10,6 +10,7 @@ gradient = SubResource("Gradient_jx8rg")
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lvka5"]
 sky_top_color = Color(0.641991, 0.63274, 0.518407, 1)
 sky_energy_multiplier = 11.0
+ground_bottom_color = Color(0, 0.494118, 0.839216, 1)
 
 [sub_resource type="Sky" id="Sky_afcab"]
 sky_material = SubResource("ProceduralSkyMaterial_lvka5")
@@ -17,14 +18,14 @@ process_mode = 3
 
 [resource]
 background_mode = 2
-background_energy_multiplier = 0.0
+background_energy_multiplier = 0.666667
 sky = SubResource("Sky_afcab")
 ambient_light_sky_contribution = 0.0
 ambient_light_energy = 0.0
 reflected_light_source = 1
 tonemap_mode = 2
 tonemap_exposure = 0.3
-tonemap_white = 1.5
+tonemap_white = 3.0
 ssao_enabled = true
 ssao_radius = 0.98
 ssao_intensity = 2.98
@@ -37,7 +38,6 @@ sdfgi_read_sky_light = false
 sdfgi_bounce_feedback = 0.7
 sdfgi_min_cell_size = 0.0976563
 sdfgi_energy = 2.0
-glow_enabled = true
 glow_levels/1 = 1.0
 glow_levels/2 = 1.0
 glow_levels/4 = 1.0
@@ -46,14 +46,15 @@ glow_normalized = true
 glow_intensity = 0.1
 glow_bloom = 0.2
 glow_blend_mode = 0
+glow_hdr_scale = 4.0
 fog_enabled = true
-fog_light_color = Color(0.501961, 0.627451, 0.517647, 1)
+fog_light_color = Color(0.669281, 0.69281, 0.630066, 1)
 fog_light_energy = 0.3
 fog_sun_scatter = 0.24
 fog_density = 0.0008
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.045
+volumetric_fog_density = 0.0195
 volumetric_fog_albedo = Color(0.932651, 0.808445, 0.59124, 1)
 volumetric_fog_gi_inject = 2.0
 volumetric_fog_length = 92.0

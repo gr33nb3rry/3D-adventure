@@ -12,7 +12,7 @@ constant = 0.8
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_2ti6r"]
 
 [sub_resource type="VisualShaderNodeProximityFade" id="VisualShaderNodeProximityFade_0w66x"]
-default_input_values = [0, 10.0]
+default_input_values = [0, 5.0]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_wilgj"]
 function = 31
@@ -26,7 +26,7 @@ input_name = "time"
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_m5clb"]
 parameter_name = "ColorParameter"
 default_value_enabled = true
-default_value = Color(0, 0.266667, 0.533333, 1)
+default_value = Color(0, 0.627497, 0.94917, 1)
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_7qylm"]
 function = 12
@@ -133,10 +133,10 @@ operator = 2
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, shadows_disabled;
 
 uniform sampler2D tex_vtx_2;
-uniform vec4 ColorParameter : source_color = vec4(0.000000, 0.266667, 0.533333, 1.000000);
+uniform vec4 ColorParameter : source_color = vec4(0.000000, 0.627497, 0.949170, 1.000000);
 uniform sampler2D tex_frg_3;
 uniform sampler2D tex_frg_7;
 uniform sampler2D depth_tex_frg_14 : hint_depth_texture;
@@ -230,7 +230,7 @@ void fragment() {
 
 	float n_out14p0;
 // ProximityFade:14
-	float n_in14p0 = 10.00000;
+	float n_in14p0 = 5.00000;
 	{
 		float __depth_tex = texture(depth_tex_frg_14, SCREEN_UV).r;
 		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
@@ -296,7 +296,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-2697.34, -394.345)
+flags/shadows_disabled = true
 nodes/vertex/2/node = SubResource("VisualShaderNodeTexture_6lio0")
 nodes/vertex/2/position = Vector2(-500, -340)
 nodes/vertex/3/node = SubResource("VisualShaderNodeInput_lnmuq")

@@ -1,0 +1,18 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://ra8jgjud7hjf"]
+
+[ext_resource type="AudioStream" uid="uid://c8fi5h40b4qm8" path="res://sounds/gun1.MP3" id="1_g4cow"]
+[ext_resource type="AudioStream" uid="uid://beg78amond2lx" path="res://sounds/gun2.MP3" id="2_rl8po"]
+[ext_resource type="AudioStream" uid="uid://br0fgs4ul0jvo" path="res://sounds/gun3.MP3" id="3_nps2j"]
+[ext_resource type="AudioStream" uid="uid://chtn0iy8e0qvg" path="res://sounds/gun4.MP3" id="4_p5mia"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 4
+stream_0/stream = ExtResource("1_g4cow")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("2_rl8po")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("3_nps2j")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("4_p5mia")
+stream_3/weight = 1.0
