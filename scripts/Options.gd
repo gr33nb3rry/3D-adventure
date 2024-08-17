@@ -22,7 +22,8 @@ var vsync := true:
 		update_vsync()
 
 func _ready():
-	quality_level = Qualities.LOW
+	#quality_level = Qualities.LOW
+	pass
 	
 func update_quality() -> void:
 	var quality_settings := {

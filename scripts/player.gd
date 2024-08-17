@@ -23,15 +23,11 @@ var moving_path := "parameters/Moving/blend_position"
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var cam_root = $CamRoot
-@onready var gun_ray_cast = $CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D/RayCast3D
 @onready var camera = $CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D
-@onready var hand = $Model/Node/Skeleton3D/Hand
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	elif Input.is_action_just_pressed("shoot"):	
-		shoot()
 	elif Input.is_action_just_pressed("run"):
 		is_running = true
 	elif Input.is_action_just_released("run"):
@@ -44,7 +40,6 @@ func _input(event):
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	player_init_rotation = rotation.y
-	gun_ray_cast.add_exception(self)
 	
 func _physics_process(delta):
 	SimpleGrass.set_player_position(global_position)
@@ -116,14 +111,3 @@ func landing():
 	await get_tree().create_timer(0.0 if last_y_velocity > -10.0 else 0.6).timeout
 	is_able_to_move = true
 	is_able_to_jump = true
-
-func shoot():
-	if !cam_root.is_aiming: return
-	hand.get_node("Deagle/AnimationPlayer").stop()
-	hand.get_node("Deagle/AnimationPlayer").play("shoot")
-	$Model/ArmPivot/AnimationPlayer.stop()
-	$Model/ArmPivot/AnimationPlayer.play("shoot")
-	gun_ray_cast.position.x = camera.h_offset
-	var hit_object = gun_ray_cast.get_collider()
-	if hit_object != null:
-		print(hit_object)

@@ -9,10 +9,6 @@
 random_pitch = 1.1
 streams_count = 4
 stream_0/stream = ExtResource("1_g4cow")
-stream_0/weight = 1.0
 stream_1/stream = ExtResource("2_rl8po")
-stream_1/weight = 1.0
 stream_2/stream = ExtResource("3_nps2j")
-stream_2/weight = 1.0
 stream_3/stream = ExtResource("4_p5mia")
-stream_3/weight = 1.0
