@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var model : Node3D = $Model
 @onready var animation_tree : AnimationTree = $Model/Sophia/AnimationTree
+@onready var animation_player: AnimationPlayer = $Model/Sophia/AnimationPlayer
 
 @onready var planet = $/root/World2/Planet
 
@@ -10,7 +11,7 @@ const ROTATION_SPEED := 10.0
 const JUMP_VELOCITY := 20.0
 
 func _physics_process(delta: float) -> void:
-	%Debug.text = str(Engine.get_frames_per_second())
+	%Debug.text = str(Engine.get_frames_per_second()) + "\n" + str(animation_tree["parameters/playback"].get_fading_from_node())
 	
 	var d = global_position - planet.global_position
 	var gravity_force = (-d.normalized()).normalized()
@@ -49,6 +50,6 @@ func _physics_process(delta: float) -> void:
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	elif Input.is_action_just_pressed("jump") and jump_buffer == 0.0: 
+	elif Input.is_action_just_pressed("jump") and jump_buffer == 0.0 and animation_tree["parameters/playback"].get_fading_from_node() == "": 
 		jump_buffer = JUMP_VELOCITY
 		animation_tree["parameters/conditions/jump"] = true

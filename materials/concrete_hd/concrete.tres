@@ -1,0 +1,20 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://qhqec8nf38ue"]
+
+[ext_resource type="Texture2D" uid="uid://cyc1784e4lbcg" path="res://T-Pose_1.png" id="1_bwq8t"]
+[ext_resource type="Texture2D" uid="uid://c413kyjax583r" path="res://materials/concrete_hd/concrete_height.png" id="2_idtkk"]
+
+[resource]
+resource_name = "concrete"
+albedo_color = Color(1, 0.553148, 0.361049, 1)
+albedo_texture = ExtResource("1_bwq8t")
+normal_scale = -0.38
+normal_texture = ExtResource("2_idtkk")
+heightmap_scale = 0.01
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_flip_texture = true
+subsurf_scatter_strength = 0.1
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1e-05

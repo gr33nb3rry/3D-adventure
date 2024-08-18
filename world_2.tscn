@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=11 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player_2.tscn" id="1_0hbib"]
+[ext_resource type="Material" uid="uid://qhqec8nf38ue" path="res://materials/concrete_hd/concrete.tres" id="1_7uhnm"]
 [ext_resource type="Script" path="res://scripts/Debug.gd" id="2_uu1xt"]
 [ext_resource type="Texture2D" uid="uid://d3osa6bqiuijk" path="res://crosshair.png" id="3_y4iti"]
 
@@ -43,8 +44,10 @@ volumetric_fog_albedo = Color(0.227451, 1, 1, 1)
 [node name="World2" type="Node3D"]
 
 [node name="Planet" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47274, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Planet"]
+material_override = ExtResource("1_7uhnm")
 mesh = SubResource("SphereMesh_atlsw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet"]

@@ -29,15 +29,16 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		yaw += -event.relative.x * yaw_sensitivity
 		pitch += -event.relative.y * pitch_sensitivity
-
+func _process(delta: float) -> void:
+	var view = Input.get_vector("view_left", "view_right", "view_down", "view_up")
+	yaw += -view.x * yaw_sensitivity * 5.0
+	pitch += view.y * pitch_sensitivity * 5.0
 
 func _physics_process(delta):
-	#position_offset = lerp(position_offset, position_offset_target, 4 * delta)
-	#global_position = lerp(global_position, player.global_position + position_offset, 18 * delta)
-	#$"../Model/ArmPivot".global_position = $CamYaw/CamPitch/SpringArm3D/Camera3D/RayCast3D.get_collision_point()
 	pitch = clamp(pitch, pitch_min, pitch_max)
 	yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
 	pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+	
 	#if you don't want to lerp, set them directly
 	#yaw_node.rotation_degrees.y = yaw
 	#pitch_node.rotation_degrees.x = pitch
