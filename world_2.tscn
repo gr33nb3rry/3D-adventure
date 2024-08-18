@@ -1,17 +1,17 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=10 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player_2.tscn" id="1_0hbib"]
 [ext_resource type="Script" path="res://scripts/Debug.gd" id="2_uu1xt"]
-[ext_resource type="Texture2D" uid="uid://bep6twgitsbyo" path="res://T-Pose_0.png" id="3_66kpx"]
 [ext_resource type="Texture2D" uid="uid://d3osa6bqiuijk" path="res://crosshair.png" id="3_y4iti"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nv3e"]
-albedo_texture = ExtResource("3_66kpx")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qotan"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2x758"]
+albedo_color = Color(0.687393, 0.356034, 0.24567, 1)
+normal_scale = -5.84
+clearcoat_roughness = 1.0
+grow_amount = 4.125
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
-material = SubResource("StandardMaterial3D_qotan")
+material = SubResource("StandardMaterial3D_2x758")
 radius = 30.0
 height = 60.0
 
@@ -19,10 +19,12 @@ height = 60.0
 radius = 30.0
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytl6t"]
-sky_top_color = Color(0.074531, 0.0980774, 0.130821, 1)
-sky_horizon_color = Color(0.38874, 0.397799, 0.412101, 1)
-ground_bottom_color = Color(0.0959762, 0.077467, 0.0559647, 1)
-ground_horizon_color = Color(0.500225, 0.510306, 0.526221, 1)
+sky_top_color = Color(9.62615e-07, 0.681503, 0.964246, 1)
+sky_horizon_color = Color(0, 0.615686, 0.898039, 1)
+sky_curve = 0.130583
+ground_bottom_color = Color(0, 0.519444, 0.807701, 1)
+ground_horizon_color = Color(0, 0.617027, 0.89688, 1)
+ground_curve = 0.129961
 
 [sub_resource type="Sky" id="Sky_178nq"]
 sky_material = SubResource("ProceduralSkyMaterial_ytl6t")
@@ -30,13 +32,19 @@ sky_material = SubResource("ProceduralSkyMaterial_ytl6t")
 [sub_resource type="Environment" id="Environment_gv1ey"]
 background_mode = 2
 sky = SubResource("Sky_178nq")
+ambient_light_color = Color(0.860389, 0.588175, 0.469213, 1)
+ambient_light_sky_contribution = 0.25
+tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+volumetric_fog_density = 0.0278
+volumetric_fog_albedo = Color(0.227451, 1, 1, 1)
 
 [node name="World2" type="Node3D"]
 
 [node name="Planet" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Planet"]
-material_override = SubResource("StandardMaterial3D_3nv3e")
 mesh = SubResource("SphereMesh_atlsw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Planet"]
@@ -81,3 +89,4 @@ environment = SubResource("Environment_gv1ey")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.886753, -0.210171, -0.411701, 0.462244, 0.403184, 0.789793, 0, -0.890658, 0.454675, 0, 7.09126, 4.2982)
+shadow_enabled = true
