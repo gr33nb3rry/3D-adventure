@@ -4,16 +4,16 @@ extends CharacterBody3D
 @onready var animation_tree : AnimationTree = $Model/Sophia/AnimationTree
 @onready var animation_player: AnimationPlayer = $Model/Sophia/AnimationPlayer
 
-@onready var planet = $/root/World2/Planet
+@onready var egg = $/root/World/Egg
 
 var jump_buffer := 0.0
 const ROTATION_SPEED := 10.0
 const JUMP_VELOCITY := 20.0
 
 func _physics_process(delta: float) -> void:
-	%Debug.text = str(Engine.get_frames_per_second()) + "\n" + str(animation_tree["parameters/playback"].get_fading_from_node())
+	#%Debug.text = str(Engine.get_frames_per_second()) + "\n" + str(animation_tree["parameters/playback"].get_fading_from_node())
 	
-	var d = global_position - planet.global_position
+	var d = global_position - egg.global_position
 	var gravity_force = (-d.normalized()).normalized()
 	jump_buffer = clamp((jump_buffer - delta * 10.0), 0.0, 50.0)
 	velocity = gravity_force * 10.0 + global_transform.basis.y * jump_buffer
@@ -42,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		var model_transform = model.transform.interpolate_with(model.transform.looking_at($Look/Point.position), ROTATION_SPEED * delta)
 		model.transform = model_transform
 
-		velocity += movement.normalized() * 5.0
+		velocity += movement.normalized() * 10.0
 	elif jump_buffer == 0.0: animation_tree["parameters/conditions/idle"] = true
 	
 	move_and_slide()

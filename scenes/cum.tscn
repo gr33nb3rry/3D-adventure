@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cg1ef5e6dl4s8"]
+
+[ext_resource type="Script" path="res://scripts/cum.gd" id="1_8uths"]
+[ext_resource type="Material" uid="uid://g08r531i6a3v" path="res://materials/cum_material.tres" id="2_b2v7h"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8vu26"]
+material = ExtResource("2_b2v7h")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6iw5p"]
+material = ExtResource("2_b2v7h")
+radius = 0.1
+height = 1.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_esnhk"]
+
+[node name="Cum" type="Node3D" groups=["Cum"]]
+script = ExtResource("1_8uths")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8vu26")
+
+[node name="Tail" type="MeshInstance3D" parent="Mesh"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.933325)
+mesh = SubResource("CapsuleMesh_6iw5p")
+
+[node name="Area" type="Area3D" parent="."]
+
+[node name="Collision" type="CollisionShape3D" parent="Area"]
+shape = SubResource("SphereShape3D_esnhk")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

@@ -1,8 +1,0 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dhwa3bes1q8hs"]
-
-[ext_resource type="Shader" uid="uid://c0biqeopn837l" path="res://WaterShader.tres" id="1_0kflt"]
-
-[resource]
-render_priority = 0
-shader = ExtResource("1_0kflt")
-shader_parameter/ColorParameter = Color(0, 0.496323, 0.610854, 1)

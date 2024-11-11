@@ -23,6 +23,7 @@ var is_aiming := false
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spring_arm.add_excluded_object(player.get_rid())
+	$CamYaw/CamPitch/SpringArm3D/Camera3D/Ray.add_exception(player)
 	#top_level = true
 
 func _input(event):
