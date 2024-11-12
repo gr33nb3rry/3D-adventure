@@ -17,6 +17,8 @@ func shoot() -> void:
 		a.target = aim_ray.get_collider()
 		if !is_following:
 			a.direction = (aim_ray.get_collider().global_position - global_position).normalized()
+		else:
+			a.follow()
 		a.is_following = is_following
 	else:
 		a.direction = (-camera.global_transform.basis.z * 500.0 - global_position).normalized()

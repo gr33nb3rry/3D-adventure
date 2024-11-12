@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bia5246u3ip2j"]
+[gd_scene load_steps=8 format=3 uid="uid://bia5246u3ip2j"]
 
 [ext_resource type="Script" path="res://scripts/turrel.gd" id="1_q4lkh"]
 [ext_resource type="Shader" path="res://toon_shader.gdshader" id="2_sx5p5"]
@@ -37,15 +37,40 @@ shader_parameter/_rim_smoothness = 0.01
 [sub_resource type="SphereMesh" id="SphereMesh_vgic8"]
 material = SubResource("ShaderMaterial_ebts4")
 
-[node name="Turrel" type="Node3D"]
+[sub_resource type="SphereMesh" id="SphereMesh_12nrk"]
+material = SubResource("ShaderMaterial_ebts4")
+radius = 0.4
+height = 0.8
+
+[node name="Turrel" type="Node3D" groups=["Turrel"]]
 script = ExtResource("1_q4lkh")
 
 [node name="Mesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("TorusMesh_dt4wb")
 
 [node name="AcidMesh" type="MeshInstance3D" parent="Mesh"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.821395, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.845972, 0)
 mesh = SubResource("SphereMesh_vgic8")
+skeleton = NodePath("")
+
+[node name="Mesh2" type="MeshInstance3D" parent="Mesh/AcidMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.08, 0.08)
+mesh = SubResource("SphereMesh_12nrk")
+skeleton = NodePath("")
+
+[node name="Mesh3" type="MeshInstance3D" parent="Mesh/AcidMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.08, 0.08)
+mesh = SubResource("SphereMesh_12nrk")
+skeleton = NodePath("")
+
+[node name="Mesh4" type="MeshInstance3D" parent="Mesh/AcidMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, -0.08, -0.08)
+mesh = SubResource("SphereMesh_12nrk")
+skeleton = NodePath("")
+
+[node name="Mesh5" type="MeshInstance3D" parent="Mesh/AcidMesh"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, -0.08, 0.08)
+mesh = SubResource("SphereMesh_12nrk")
 skeleton = NodePath("")
 
 [node name="Timer" type="Timer" parent="."]

@@ -17,6 +17,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global_position += direction * SPEED * delta
 
+func follow() -> void:
+	is_followed = true
+	$Mesh.transparency = 0.9
+	$Mesh/Tail.transparency = 0.9
+
 func oh_fuck_yeah_baby() -> void:
 	process_mode = PROCESS_MODE_DISABLED
 	#queue_free()

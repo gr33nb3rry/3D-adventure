@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=12 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -9,15 +9,6 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
-radius = 30.0
-height = 60.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2l24"]
-transparency = 1
-shading_mode = 0
-
-[sub_resource type="SphereMesh" id="SphereMesh_7pow7"]
-material = SubResource("StandardMaterial3D_i2l24")
 radius = 30.0
 height = 60.0
 
@@ -53,19 +44,15 @@ volumetric_fog_albedo = Color(0.235983, 0, 0.115724, 1)
 script = ExtResource("1_xhq08")
 
 [node name="CumTimer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="Egg" type="StaticBody3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Egg"]
+[node name="Mesh" type="MeshInstance3D" parent="Egg"]
 mesh = SubResource("SphereMesh_atlsw")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Egg"]
-visible = false
-transparency = 0.92
-mesh = SubResource("SphereMesh_7pow7")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Egg"]
+[node name="Collision" type="CollisionShape3D" parent="Egg"]
 shape = SubResource("SphereShape3D_5aph4")
 
 [node name="Cums" type="Node3D" parent="."]
