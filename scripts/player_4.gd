@@ -1,55 +1,43 @@
 extends CharacterBody3D
 
 @onready var model : Node3D = $Model
-@onready var animation_tree : AnimationTree = $Model/Sophia/AnimationTree
-@onready var animation_player: AnimationPlayer = $Model/Sophia/AnimationPlayer
+@onready var model_main: Node3D = $Model/Main
+@onready var cam_yaw: Node3D = $CamRoot/CamYaw
+
 
 @onready var egg = $/root/World/Egg
 
-var jump_buffer := 0.0
+const SPEED := 15.0
 const ROTATION_SPEED := 10.0
-const JUMP_VELOCITY := 20.0
+var is_running := false
 
 func _physics_process(delta: float) -> void:
-	#%Debug.text = str(Engine.get_frames_per_second()) + "\n" + str(animation_tree["parameters/playback"].get_fading_from_node())
-	
 	var d = global_position - egg.global_position
 	var gravity_force = (-d.normalized()).normalized()
-	jump_buffer = clamp((jump_buffer - delta * 10.0), 0.0, 50.0)
-	velocity = gravity_force * 10.0 + global_transform.basis.y * jump_buffer
-	
-	if jump_buffer <= 10.0:
-		animation_tree["parameters/conditions/fall"] = true
+	velocity = gravity_force * 10.0
 	
 	var up_direction = -gravity_force.normalized()
 	var orientation_direction = Quaternion(global_transform.basis.y, up_direction) * global_transform.basis.get_rotation_quaternion()
 	var rotation = global_transform.basis.get_rotation_quaternion().slerp(orientation_direction.normalized(), 5.0 * delta)
 	global_rotation = rotation.get_euler()
 	
-	
 	var movement := Vector3.ZERO
-	var forward : Vector3 = -$CamRoot/CamYaw.global_transform.basis.z
-	var right : Vector3 = $CamRoot/CamYaw.global_transform.basis.x
+	var forward : Vector3 = -cam_yaw.global_transform.basis.z
+	var right : Vector3 = cam_yaw.global_transform.basis.x
 	var up : Vector3 = global_transform.basis.y
 	var direction = Input.get_vector("move_left", "move_right", "move_back", "move_forward")
 	forward *= direction.y
 	right *= direction.x
 	movement += forward + right
 	if movement != Vector3.ZERO:
-		if jump_buffer == 0.0: animation_tree["parameters/conditions/run"] = true
 		$Look/Point.position = Vector3(direction.x, 0, -direction.y)
-		$Model/Sophia.rotation.y = lerp_angle($Model/Sophia.rotation.y, $CamRoot/CamYaw.rotation.y + deg_to_rad(180), ROTATION_SPEED * delta)
+		model_main.rotation.y = lerp_angle(model_main.rotation.y, cam_yaw.rotation.y + deg_to_rad(180), ROTATION_SPEED * delta)
 		var model_transform = model.transform.interpolate_with(model.transform.looking_at($Look/Point.position), ROTATION_SPEED * delta)
 		model.transform = model_transform
-
-		velocity += movement.normalized() * 10.0
-	elif jump_buffer == 0.0: animation_tree["parameters/conditions/idle"] = true
-	
+		velocity += movement.normalized() * SPEED
+	is_running = movement != Vector3.ZERO
 	move_and_slide()
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
-	elif Input.is_action_just_pressed("jump") and jump_buffer == 0.0 and animation_tree["parameters/playback"].get_fading_from_node() == "": 
-		jump_buffer = JUMP_VELOCITY
-		animation_tree["parameters/conditions/jump"] = true

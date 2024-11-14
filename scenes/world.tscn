@@ -1,17 +1,24 @@
-[gd_scene load_steps=16 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=22 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
 [ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_xwmor"]
-[ext_resource type="Script" path="res://scripts/Debug.gd" id="3_ueqab"]
 [ext_resource type="Texture2D" uid="uid://d3osa6bqiuijk" path="res://crosshair.png" id="4_dc8ox"]
+[ext_resource type="Script" path="res://scripts/canvas.gd" id="4_jc0p1"]
 [ext_resource type="Texture2D" uid="uid://de0ka48fhumc1" path="res://icon.svg" id="6_yohan"]
 [ext_resource type="Script" path="res://scripts/gun_progress.gd" id="7_qsapa"]
+[ext_resource type="FontFile" uid="uid://datf66tlfj8k6" path="res://NewAmsterdam-Regular.ttf" id="8_73fw1"]
+[ext_resource type="Texture2D" uid="uid://c33aum5pji8jp" path="res://images/cum.png" id="8_bssgl"]
+[ext_resource type="Texture2D" uid="uid://cvcl5k5rr1cuk" path="res://images/turrel.png" id="8_obsu7"]
+[ext_resource type="Texture2D" uid="uid://dwsvimccm3wfi" path="res://images/builder.png" id="11_tx7yf"]
+[ext_resource type="Texture2D" uid="uid://cxp8eb48nanv2" path="res://images/blaster.png" id="12_4artd"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
 radius = 30.0
 height = 60.0
+radial_segments = 128
+rings = 64
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_5aph4"]
 radius = 30.0
@@ -41,14 +48,6 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0278
 volumetric_fog_albedo = Color(0.235983, 0, 0.115724, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2n4x"]
-bg_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-anti_aliasing_size = 0.25
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfatc"]
 content_margin_top = 2.0
 bg_color = Color(0, 0, 0, 0.501961)
@@ -70,6 +69,17 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2n4x"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj835"]
+bg_color = Color(0, 0, 0, 0.313726)
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_xhq08")
@@ -102,21 +112,21 @@ visible = false
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gv1ey")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="Light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.886753, -0.210171, -0.411701, 0.462244, 0.403184, 0.789793, 0, -0.890658, 0.454675, 0, 7.09126, 4.2982)
 shadow_enabled = true
+sky_mode = 1
 
 [node name="Canvas" type="CanvasLayer" parent="."]
+script = ExtResource("4_jc0p1")
 
 [node name="Debug" type="Label" parent="Canvas"]
-unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0.98959, 0.447056, 1)
 theme_override_colors/font_outline_color = Color(9.02452e-08, 0.173344, 0.10345, 1)
 theme_override_constants/outline_size = 8
 text = "000"
-script = ExtResource("3_ueqab")
 
 [node name="Crosshair" type="TextureRect" parent="Canvas"]
 texture_filter = 2
@@ -137,28 +147,53 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Control" type="MarginContainer" parent="Canvas/HBox"]
-custom_minimum_size = Vector2(60, 60)
+[node name="Cums" type="HBoxContainer" parent="Canvas/HBox"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
+size_flags_vertical = 4
 
-[node name="Panel" type="Panel" parent="Canvas/HBox/Control"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b2n4x")
-
-[node name="Center" type="CenterContainer" parent="Canvas/HBox/Control"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Canvas/HBox/Control/Center"]
+[node name="Icon" type="TextureRect" parent="Canvas/HBox/Cums"]
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
-texture = ExtResource("6_yohan")
+texture = ExtResource("8_bssgl")
 expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/HBox/Cums"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "000"
+vertical_alignment = 1
+
+[node name="Turrels" type="HBoxContainer" parent="Canvas/HBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="Icon" type="TextureRect" parent="Canvas/HBox/Turrels"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("8_obsu7")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/HBox/Turrels"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "000"
+vertical_alignment = 1
 
 [node name="Gun" type="Control" parent="Canvas/HBox"]
 custom_minimum_size = Vector2(100, 60)
@@ -181,5 +216,99 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_b5eqq")
 max_value = 10.0
 value = 10.0
 show_percentage = false
+
+[node name="Control" type="MarginContainer" parent="Canvas/HBox"]
+visible = false
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Panel" type="Panel" parent="Canvas/HBox/Control"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b2n4x")
+
+[node name="Center" type="CenterContainer" parent="Canvas/HBox/Control"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/HBox/Control/Center"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("6_yohan")
+expand_mode = 1
+
+[node name="Pregnant" type="Panel" parent="Canvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qj835")
+
+[node name="VBox" type="VBoxContainer" parent="Canvas/Pregnant"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="PregnantLabel" type="RichTextLabel" parent="Canvas/Pregnant/VBox"]
+custom_minimum_size = Vector2(100.075, 240)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]PREGNANT[/center][/tornado][/wave]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Weapon" type="Control" parent="Canvas"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = -400.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Builder" type="TextureRect" parent="Canvas/Weapon"]
+self_modulate = Color(0.694118, 0.694118, 0.694118, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 75.0
+offset_right = 100.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_tx7yf")
+expand_mode = 1
+
+[node name="Blaster" type="TextureRect" parent="Canvas/Weapon"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_4artd")
+expand_mode = 1
 
 [connection signal="timeout" from="CumTimer" to="." method="i_am_cumming"]

@@ -17,8 +17,6 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Options="res://scripts/Options.gd"
-SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 Stats="*res://scripts/Stats.gd"
 
 [display]

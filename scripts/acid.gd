@@ -1,8 +1,5 @@
 extends Node3D
 
-@onready var camera = $/root/World/Player/CamRoot/CamYaw/CamPitch/SpringArm3D/Camera3D
-const SPEED := 30.0
-
 var direction : Vector3
 var target : Node3D
 var is_following := false
@@ -22,14 +19,16 @@ func update_size(size:float) -> void:
 func _process(delta: float) -> void:
 	if is_following:
 		if target != null:
-			global_position += (target.global_position - global_position).normalized() * SPEED * delta
+			global_position += (target.global_position - global_position).normalized() * Stats.acid_speed * delta
 		else:
 			death()
 	else:
-		global_position += direction * SPEED * delta
+		global_position += direction * Stats.acid_speed * delta
 
 func kill_cum(cum:Node3D) -> void:
 	cum.death()
+	Stats.cum_count += 1
+	$/root/World/Canvas.update_cums()
 	if ricochet_count == 0:
 		death()
 	else:

@@ -1,26 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://c65mx8agt5fw8"]
+[gd_scene load_steps=6 format=3 uid="uid://c65mx8agt5fw8"]
 
 [ext_resource type="Script" path="res://scripts/acid.gd" id="1_4kinl"]
-[ext_resource type="Shader" path="res://toon_shader.gdshader" id="2_dopby"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebts4"]
-render_priority = 0
-shader = ExtResource("2_dopby")
-shader_parameter/color = Color(1, 0.734491, 0.389092, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(1, 0.63556, 0.142839, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
+[ext_resource type="Material" uid="uid://dw242a5w543qw" path="res://materials/acid_material.tres" id="2_x1y7a"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_vgic8"]
-material = SubResource("ShaderMaterial_ebts4")
+material = ExtResource("2_x1y7a")
 
 [sub_resource type="SphereMesh" id="SphereMesh_12nrk"]
-material = SubResource("ShaderMaterial_ebts4")
+material = ExtResource("2_x1y7a")
 radius = 0.4
 height = 0.8
 

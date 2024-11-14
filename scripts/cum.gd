@@ -20,8 +20,6 @@ func _process(delta: float) -> void:
 
 func follow() -> void:
 	is_followed = true
-	$Mesh.transparency = 0.9
-	$Mesh/Tail.transparency = 0.9
 
 func oh_fuck_yeah_baby() -> void:
 	speed /= 4.0
@@ -30,10 +28,10 @@ func oh_fuck_yeah_baby() -> void:
 
 func death() -> void:
 	speed /= 4.0
-	var t = get_tree().create_tween().set_parallel(true)
-	t.tween_property($Mesh, "transparency", 1.0, 1.0)
-	t.tween_property($Mesh/Tail, "transparency", 1.0, 1.0)
-	await get_tree().create_timer(1.0).timeout
+	#var t = get_tree().create_tween().set_parallel(true)
+	#t.tween_property($Mesh, "transparency", 1.0, 1.0)
+	#t.tween_property($Mesh/Tail, "transparency", 1.0, 1.0)
+	#await get_tree().create_timer(1.0).timeout
 	queue_free()
 
 func _on_area_body_entered(body: Node3D) -> void:

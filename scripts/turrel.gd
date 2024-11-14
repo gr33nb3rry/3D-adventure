@@ -14,7 +14,7 @@ func rotate_to_ground() -> void:
 	global_position = direction * (egg.get_node("Mesh").mesh.radius - $GroundPivot.position.y)
 	
 func shoot() -> void:
-	$/root/World/Canvas/Debug.text = str(get_tree().get_node_count_in_group("Cum"))
+	#$/root/World/Canvas/Debug.text = str(get_tree().get_node_count_in_group("Cum"))
 	if get_tree().get_node_count_in_group("Cum") == 0: return
 	var a = acid.instantiate()
 	acids_container.add_child(a)
