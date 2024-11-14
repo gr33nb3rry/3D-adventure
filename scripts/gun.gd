@@ -6,23 +6,30 @@ extends Node3D
 @onready var acids_container = $/root/World/Acids
 @onready var turrel = preload("res://scenes/turrel.tscn")
 @onready var turrels_container = $/root/World/Turrels
+@onready var gun_progress = $/root/World/Canvas/HBox/Gun
 
-var is_following : bool = false
+enum Weapons {
+	BLASTER,
+	BUILDER
+}
+
+var current_weapon : int = Weapons.BLASTER
 
 func shoot() -> void:
+	if !gun_progress.is_full: return
 	var a = acid.instantiate()
 	acids_container.add_child(a)
 	a.global_position = global_position
 	if aim_ray.is_colliding() and aim_ray.get_collider() is Area3D and aim_ray.get_collider().get_parent().is_in_group("Cum"):
 		a.target = aim_ray.get_collider()
-		if !is_following:
+		if !Stats.gun_is_following:
 			a.direction = (aim_ray.get_collider().global_position - global_position).normalized()
-		else:
-			a.follow()
-		a.is_following = is_following
+		else: a.follow()
+		a.is_following = Stats.gun_is_following
 	else:
 		a.direction = (-camera.global_transform.basis.z * 500.0 - global_position).normalized()
-
+	gun_progress.shoot()
+	
 func build() -> void:
 	if !aim_ray.is_colliding(): return
 	var t = turrel.instantiate()
@@ -31,7 +38,9 @@ func build() -> void:
 	t.rotate_to_ground()
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
-	elif Input.is_action_just_pressed("build"):
-		build()
+	if Input.is_action_just_pressed("change_weapon"):
+		current_weapon += 1
+		if current_weapon >= Weapons.size(): current_weapon = 0
+	if Input.is_action_just_pressed("gun"):
+		if current_weapon == Weapons.BLASTER: shoot()
+		elif current_weapon == Weapons.BUILDER: build()

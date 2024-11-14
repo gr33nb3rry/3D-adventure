@@ -21,10 +21,13 @@ func shoot() -> void:
 	a.global_position = $Mesh/AcidMesh.global_position
 	var nearest_cum = get_nearest_cum()
 	if nearest_cum == null: return
-	nearest_cum.follow()
+	if !Stats.turrel_is_following:
+		a.direction = (nearest_cum.global_position - a.global_position).normalized()
+	else:
+		nearest_cum.follow()
 	a.target = nearest_cum
-	a.is_following = true
-	a.ricochet_count = 1
+	a.is_following = Stats.turrel_is_following
+	a.ricochet_count = Stats.turrel_ricochet_count
 	
 func get_nearest_cum() -> Node3D:
 	var nearest : Node3D

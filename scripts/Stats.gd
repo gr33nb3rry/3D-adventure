@@ -1,6 +1,6 @@
 extends Node
 
-var is_first_person := true
-var bullet_speed := 5.0
-var bullet_size := 10.0
-var bullet_damage := 1.0
+var gun_is_following : bool = false
+var turrel_is_following : bool = true
+var turrel_ricochet_count : int = 0
+var gun_cooldown : float = 1.0

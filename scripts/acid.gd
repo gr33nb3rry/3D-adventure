@@ -10,9 +10,10 @@ var ricochet_count := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
-	#await get_tree().create_timer(5.0).timeout
-	#death()
+	await get_tree().create_timer(1.0).timeout
+	if !is_following:
+		await get_tree().create_timer(5.0).timeout
+		death()
 
 func update_size(size:float) -> void:
 	scale = Vector3(size,size,size)
@@ -28,15 +29,18 @@ func _process(delta: float) -> void:
 		global_position += direction * SPEED * delta
 
 func kill_cum(cum:Node3D) -> void:
-	cum.queue_free()
+	cum.death()
 	if ricochet_count == 0:
 		death()
-	elif is_following:
+	else:
 		var nearest_cum = get_nearest_cum()
 		if nearest_cum == null: 
 			death()
 			return
-		nearest_cum.follow()
+		if !is_following:
+			direction = (nearest_cum.global_position - global_position).normalized()
+		else:
+			nearest_cum.follow()
 		target = nearest_cum
 		ricochet_count -= 1
 
