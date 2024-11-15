@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bia5246u3ip2j"]
+[gd_scene load_steps=9 format=3 uid="uid://bia5246u3ip2j"]
 
 [ext_resource type="Script" path="res://scripts/turrel.gd" id="1_q4lkh"]
 [ext_resource type="Shader" path="res://toon_shader.gdshader" id="2_sx5p5"]
+[ext_resource type="Material" uid="uid://dw242a5w543qw" path="res://materials/acid_material.tres" id="3_vphda"]
+[ext_resource type="AudioStream" uid="uid://d2o04ayq4t24" path="res://sounds/acid_start.tres" id="4_w8f4r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fsr63"]
 render_priority = 0
@@ -21,24 +23,11 @@ material = SubResource("ShaderMaterial_fsr63")
 inner_radius = 0.2
 outer_radius = 0.68
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ebts4"]
-render_priority = 0
-shader = ExtResource("2_sx5p5")
-shader_parameter/color = Color(1, 0.734491, 0.389092, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(1, 0.63556, 0.142839, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
 [sub_resource type="SphereMesh" id="SphereMesh_vgic8"]
-material = SubResource("ShaderMaterial_ebts4")
+material = ExtResource("3_vphda")
 
 [sub_resource type="SphereMesh" id="SphereMesh_12nrk"]
-material = SubResource("ShaderMaterial_ebts4")
+material = ExtResource("3_vphda")
 radius = 0.4
 height = 0.8
 
@@ -78,5 +67,8 @@ autostart = true
 
 [node name="GroundPivot" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.225177, 0)
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_w8f4r")
 
 [connection signal="timeout" from="Timer" to="." method="shoot"]

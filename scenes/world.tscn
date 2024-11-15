@@ -36,13 +36,14 @@ sky_material = SubResource("ProceduralSkyMaterial_ytl6t")
 
 [sub_resource type="Environment" id="Environment_gv1ey"]
 background_mode = 2
-background_energy_multiplier = 0.5
+background_energy_multiplier = 0.6
 sky = SubResource("Sky_178nq")
 ambient_light_color = Color(0.860389, 0.588175, 0.469213, 1)
 ambient_light_sky_contribution = 0.25
 tonemap_mode = 2
 ssao_enabled = true
 ssil_enabled = true
+glow_enabled = true
 fog_sky_affect = 0.0
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.0278

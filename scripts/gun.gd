@@ -8,6 +8,7 @@ extends Node3D
 @onready var turrel = preload("res://scenes/turrel.tscn")
 @onready var turrels_container = $/root/World/Turrels
 @onready var gun_progress = $/root/World/Canvas/HBox/Gun
+@onready var audio: AudioStreamPlayer3D = $Audio
 
 const ROTATION_SPEED := 10.0
 
@@ -25,6 +26,7 @@ func _process(delta: float) -> void:
 
 func shoot() -> void:
 	if !gun_progress.is_full: return
+	audio.play()
 	var a = acid.instantiate()
 	acids_container.add_child(a)
 	a.global_position = global_position

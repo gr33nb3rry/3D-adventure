@@ -5,10 +5,10 @@
 [resource]
 render_priority = 0
 shader = ExtResource("1_2qcqv")
-shader_parameter/color = Color(1, 0.582289, 0.660235, 1)
+shader_parameter/color = Color(1, 0.5635, 0.670256, 1)
 shader_parameter/shadow = 0.5
 shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.679583, 0.55857, 0.9336, 1)
+shader_parameter/shadow_color = Color(0.307048, 0.162095, 0.52081, 1)
 shader_parameter/_specular_smoothness = 0.5
 shader_parameter/_specular_strength = 0.055
 shader_parameter/_glossiness = 0.165

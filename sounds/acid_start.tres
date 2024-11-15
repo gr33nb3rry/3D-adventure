@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://d2o04ayq4t24"]
+
+[ext_resource type="AudioStream" uid="uid://chxld6x847iov" path="res://sounds/acid_start.MP3" id="1_wqfa5"]
+
+[resource]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("1_wqfa5")

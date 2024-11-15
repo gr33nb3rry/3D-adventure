@@ -3,6 +3,7 @@ extends Node3D
 @onready var egg = $/root/World/Egg
 @onready var acid = preload("res://scenes/acid.tscn")
 @onready var acids_container = $/root/World/Acids
+@onready var audio: AudioStreamPlayer3D = $Audio
 
 func _ready() -> void:
 	rotate_to_ground()
@@ -16,6 +17,7 @@ func rotate_to_ground() -> void:
 func shoot() -> void:
 	#$/root/World/Canvas/Debug.text = str(get_tree().get_node_count_in_group("Cum"))
 	if get_tree().get_node_count_in_group("Cum") == 0: return
+	audio.play()
 	var a = acid.instantiate()
 	acids_container.add_child(a)
 	a.global_position = $Mesh/AcidMesh.global_position

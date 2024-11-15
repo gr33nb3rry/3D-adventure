@@ -5,8 +5,8 @@ extends Node3D
 
 func i_am_cumming() -> void:
 	var t = get_tree().create_tween()
-	t.tween_property($Light, "light_volumetric_fog_energy", 3.0, 0.5)
-	t.tween_property($Light, "light_volumetric_fog_energy", 1.0, 0.5)
+	t.tween_property($WorldEnvironment.environment, "background_energy_multiplier", 1.0, 0.5)
+	t.tween_property($WorldEnvironment.environment, "background_energy_multiplier", 0.6, 0.5)
 	var distance : float = randf_range(270.0, 500.0)
 	var position_pivot = Vector3(randf_range(-1.0,1.0), randf_range(0.0,1.0), randf_range(-1.0,1.0)) * distance
 	var so_much_cum = randi_range(3, 100)
