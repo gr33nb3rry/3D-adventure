@@ -7,6 +7,7 @@ var ricochet_count := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	ricochet_count = Stats.acid_ricochet_count
 	await get_tree().create_timer(1.0).timeout
 	if !is_following:
 		await get_tree().create_timer(5.0).timeout

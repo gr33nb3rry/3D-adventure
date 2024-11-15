@@ -1,25 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bia5246u3ip2j"]
+[gd_scene load_steps=8 format=3 uid="uid://bia5246u3ip2j"]
 
 [ext_resource type="Script" path="res://scripts/turrel.gd" id="1_q4lkh"]
-[ext_resource type="Shader" path="res://toon_shader.gdshader" id="2_sx5p5"]
+[ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_alse2"]
 [ext_resource type="Material" uid="uid://dw242a5w543qw" path="res://materials/acid_material.tres" id="3_vphda"]
 [ext_resource type="AudioStream" uid="uid://d2o04ayq4t24" path="res://sounds/acid_start.tres" id="4_w8f4r"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsr63"]
-render_priority = 0
-shader = ExtResource("2_sx5p5")
-shader_parameter/color = Color(1, 0.582289, 0.660235, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.679583, 0.55857, 0.9336, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
 [sub_resource type="TorusMesh" id="TorusMesh_dt4wb"]
-material = SubResource("ShaderMaterial_fsr63")
+material = ExtResource("2_alse2")
 inner_radius = 0.2
 outer_radius = 0.68
 

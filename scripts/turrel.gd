@@ -29,7 +29,6 @@ func shoot() -> void:
 		nearest_cum.follow()
 	a.target = nearest_cum
 	a.is_following = Stats.turrel_is_following
-	a.ricochet_count = Stats.turrel_ricochet_count
 	
 func get_nearest_cum() -> Node3D:
 	var nearest : Node3D

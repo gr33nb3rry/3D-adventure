@@ -9,6 +9,7 @@ extends Node3D
 @onready var turrels_container = $/root/World/Turrels
 @onready var gun_progress = $/root/World/Canvas/HBox/Gun
 @onready var audio: AudioStreamPlayer3D = $Audio
+@onready var canvas = $/root/World/Canvas
 
 const ROTATION_SPEED := 10.0
 
@@ -31,10 +32,10 @@ func shoot() -> void:
 	acids_container.add_child(a)
 	a.global_position = global_position
 	if aim_ray.is_colliding() and aim_ray.get_collider() is Area3D and aim_ray.get_collider().get_parent().is_in_group("Cum"):
-		a.target = aim_ray.get_collider()
+		a.target = aim_ray.get_collider().get_parent()
 		if !Stats.gun_is_following:
 			a.direction = (aim_ray.get_collider().global_position - global_position).normalized()
-		else: a.follow()
+		else: aim_ray.get_collider().get_parent().follow()
 		a.is_following = Stats.gun_is_following
 	else:
 		a.direction = (camera.global_position + -camera.global_transform.basis.z * 500.0 - global_position).normalized()
@@ -43,6 +44,9 @@ func shoot() -> void:
 func build() -> void:
 	if !aim_ray.is_colliding(): return
 	if aim_ray.get_collider().name != "Egg": return
+	if Stats.turrel_count < 1: return
+	Stats.turrel_count -= 1
+	canvas.update_turrel()
 	var t = turrel.instantiate()
 	turrels_container.add_child(t)
 	t.global_position = aim_ray.get_collision_point()

@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvsupl0jtom03"]
+
+[ext_resource type="Material" uid="uid://g08r531i6a3v" path="res://materials/cum_material.tres" id="1_jf246"]
+[ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_j6tq1"]
+[ext_resource type="Material" uid="uid://bgyf11nxhum40" path="res://materials/weapon_material.tres" id="3_h2ira"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rf432"]
+material = ExtResource("1_jf246")
+radius = 1.0
+height = 2.7
+
+[sub_resource type="TorusMesh" id="TorusMesh_hs4rf"]
+material = ExtResource("2_j6tq1")
+inner_radius = 0.55
+outer_radius = 1.25
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_fcagq"]
+material = ExtResource("3_h2ira")
+radius = 0.1
+height = 1.1
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_62xbd"]
+material = ExtResource("2_j6tq1")
+radius = 0.06
+height = 0.7
+
+[sub_resource type="TorusMesh" id="TorusMesh_4lphi"]
+material = ExtResource("2_j6tq1")
+inner_radius = 0.2
+outer_radius = 0.4
+
+[node name="Market" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_rf432")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.818558, 0)
+mesh = SubResource("TorusMesh_hs4rf")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.81811, 0)
+mesh = SubResource("CapsuleMesh_fcagq")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="MeshInstance3D4"]
+transform = Transform3D(0.410796, -0.880955, -0.234871, 0.906308, 0.422618, 0, 0.0992606, -0.212865, 0.972027, 0, 0.253767, 0)
+mesh = SubResource("CapsuleMesh_62xbd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="MeshInstance3D4"]
+transform = Transform3D(0.383554, -0.822533, 0.419911, 0.906308, 0.422618, 0, -0.177462, 0.380569, 0.907565, 0, 0.0310442, 0)
+mesh = SubResource("CapsuleMesh_62xbd")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435889, 0)
+mesh = SubResource("TorusMesh_4lphi")
+skeleton = NodePath("../..")

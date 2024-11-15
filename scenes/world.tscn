@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=23 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cvcl5k5rr1cuk" path="res://images/turrel.png" id="8_obsu7"]
 [ext_resource type="Texture2D" uid="uid://dwsvimccm3wfi" path="res://images/builder.png" id="11_tx7yf"]
 [ext_resource type="Texture2D" uid="uid://cxp8eb48nanv2" path="res://images/blaster.png" id="12_4artd"]
+[ext_resource type="PackedScene" uid="uid://bvsupl0jtom03" path="res://scenes/market.tscn" id="13_0pxva"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
@@ -87,7 +88,8 @@ script = ExtResource("1_xhq08")
 
 [node name="CumTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
+
+[node name="WaveTimer" type="Timer" parent="."]
 
 [node name="Egg" type="StaticBody3D" parent="."]
 
@@ -103,8 +105,11 @@ shape = SubResource("SphereShape3D_5aph4")
 
 [node name="Turrels" type="Node3D" parent="."]
 
+[node name="Market" parent="." instance=ExtResource("13_0pxva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.135, 0)
+
 [node name="Player" parent="." instance=ExtResource("2_chlkg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0269694, 34.182, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0269694, 34.182, 2.69315)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.0274723, 0.313777, -0.949099, -0.00907867, 0.949497, 0.313646, 0.999581, 0, 0.0289335, -43.0992, 31.6158, -20.9621)
@@ -148,7 +153,6 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Cums" type="HBoxContainer" parent="Canvas/HBox"]
@@ -197,7 +201,7 @@ text = "000"
 vertical_alignment = 1
 
 [node name="Gun" type="Control" parent="Canvas/HBox"]
-custom_minimum_size = Vector2(100, 60)
+custom_minimum_size = Vector2(140, 60)
 layout_mode = 2
 script = ExtResource("7_qsapa")
 
@@ -239,6 +243,28 @@ custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("6_yohan")
 expand_mode = 1
+
+[node name="WaveLabel" type="Label" parent="Canvas/HBox"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "wave 000"
+vertical_alignment = 1
+
+[node name="WaveTimerLabel" type="Label" parent="Canvas/HBox"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+vertical_alignment = 1
 
 [node name="Pregnant" type="Panel" parent="Canvas"]
 visible = false
@@ -312,4 +338,20 @@ grow_vertical = 2
 texture = ExtResource("12_4artd")
 expand_mode = 1
 
+[node name="StatsLabel" type="RichTextLabel" parent="Canvas"]
+custom_minimum_size = Vector2(60, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 277.0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true
+text = "[center][color=675f54]<tab> to show stats[/color][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [connection signal="timeout" from="CumTimer" to="." method="i_am_cumming"]
+[connection signal="timeout" from="WaveTimer" to="." method="wave_timer_next"]
