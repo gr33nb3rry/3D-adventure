@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvsupl0jtom03"]
+[gd_scene load_steps=11 format=3 uid="uid://bvsupl0jtom03"]
 
+[ext_resource type="Script" path="res://scripts/market.gd" id="1_ds0hl"]
 [ext_resource type="Material" uid="uid://g08r531i6a3v" path="res://materials/cum_material.tres" id="1_jf246"]
 [ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_j6tq1"]
 [ext_resource type="Material" uid="uid://bgyf11nxhum40" path="res://materials/weapon_material.tres" id="3_h2ira"]
@@ -29,7 +30,11 @@ material = ExtResource("2_j6tq1")
 inner_radius = 0.2
 outer_radius = 0.4
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qwl5a"]
+radius = 1.5
+
 [node name="Market" type="Node3D"]
+script = ExtResource("1_ds0hl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_rf432")
@@ -56,3 +61,11 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.435889, 0)
 mesh = SubResource("TorusMesh_4lphi")
 skeleton = NodePath("../..")
+
+[node name="Area" type="Area3D" parent="."]
+monitorable = false
+
+[node name="Collision" type="CollisionShape3D" parent="Area"]
+shape = SubResource("CylinderShape3D_qwl5a")
+
+[connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

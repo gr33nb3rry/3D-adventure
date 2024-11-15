@@ -10,8 +10,10 @@ extends CharacterBody3D
 const SPEED := 15.0
 const ROTATION_SPEED := 10.0
 var is_running := false
+var is_active := true
 
 func _physics_process(delta: float) -> void:
+	if !is_active: return
 	var d = global_position - egg.global_position
 	var gravity_force = (-d.normalized()).normalized()
 	velocity = gravity_force * 10.0
@@ -37,7 +39,3 @@ func _physics_process(delta: float) -> void:
 		velocity += movement.normalized() * SPEED
 	is_running = movement != Vector3.ZERO
 	move_and_slide()
-
-func _input(event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()

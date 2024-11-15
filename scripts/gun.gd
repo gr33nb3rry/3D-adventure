@@ -7,7 +7,7 @@ extends Node3D
 @onready var acids_container = $/root/World/Acids
 @onready var turrel = preload("res://scenes/turrel.tscn")
 @onready var turrels_container = $/root/World/Turrels
-@onready var gun_progress = $/root/World/Canvas/HBox/Gun
+@onready var gun_progress = $/root/World/Canvas/VBox/HBox/Gun
 @onready var audio: AudioStreamPlayer3D = $Audio
 @onready var canvas = $/root/World/Canvas
 
@@ -26,7 +26,9 @@ func _process(delta: float) -> void:
 	global_rotation = lerp(global_rotation, camera.global_rotation, ROTATION_SPEED * delta)
 
 func shoot() -> void:
+	if !player.is_active: return
 	if !gun_progress.is_full: return
+	if aim_ray.is_colliding() and aim_ray.get_collider().name == "Egg": return
 	audio.play()
 	var a = acid.instantiate()
 	acids_container.add_child(a)
