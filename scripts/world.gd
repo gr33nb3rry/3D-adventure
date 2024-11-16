@@ -34,6 +34,10 @@ func end_game() -> void:
 func wave_start() -> void:
 	wave += 1
 	wave_timer = Stats.wave_duration
+	if wave <= 3: new_wave_delay = 10
+	elif wave <= 10: new_wave_delay = 7
+	elif wave <= 25: new_wave_delay = 5
+	else: new_wave_delay = 3
 	$CumTimer.wait_time = clamp(6.12132 - 0.207972 * wave, 1.0, 10.0)
 	$WaveTimer.start()
 	$CumTimer.start()

@@ -410,6 +410,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = -5
 
 [node name="HBox" type="HBoxContainer" parent="Canvas/VBox"]
 layout_mode = 2
@@ -540,6 +541,20 @@ text = "next wave in 00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TaskLabel" type="RichTextLabel" parent="Canvas/VBox"]
+custom_minimum_size = Vector2(60, 55)
+layout_mode = 2
+mouse_filter = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center]protect the egg[/center]
+"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="Weapon" type="Control" parent="Canvas"]
 visible = false
 custom_minimum_size = Vector2(400, 400)
@@ -619,27 +634,6 @@ text = "[center][color=675f54]<tab> to show stats[/color][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
-[node name="TaskLabel" type="RichTextLabel" parent="Canvas"]
-visible = false
-custom_minimum_size = Vector2(60, 0)
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -222.0
-offset_top = 13.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
-theme_override_constants/outline_size = 8
-theme_override_fonts/normal_font = ExtResource("8_73fw1")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "protect the egg
-"
-scroll_active = false
-shortcut_keys_enabled = false
-
 [node name="Button" type="Button" parent="Canvas"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -701,12 +695,14 @@ offset_bottom = 7.29
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.817131, 0.859711, 0.887025, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/line_spacing = -10
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 28
-text = "wave duration − 50%"
-horizontal_alignment = 1
+text = "wave duration − 50%
+2x reward"
 vertical_alignment = 1
 
 [node name="DurationLabel" type="Label" parent="Canvas/WaveDuration"]

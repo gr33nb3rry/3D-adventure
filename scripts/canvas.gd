@@ -7,7 +7,7 @@ extends CanvasLayer
 @onready var wave_label: Label = $VBox/HBox/WaveLabel
 @onready var wave_timer_label: Label = $VBox/HBox/WaveTimerLabel
 @onready var new_wave_timer_label: Label = $VBox/NewWaveTimerLabel
-@onready var task_label: RichTextLabel = $TaskLabel
+@onready var task_label: RichTextLabel = $VBox/TaskLabel
 @onready var highscore_label: RichTextLabel = $Start/VBox/HighscoreLabel
 @onready var ad_timer_label: Label = $WaveDuration/DurationLabel
 
@@ -63,9 +63,9 @@ func update_ad() -> void:
 
 func update_task() -> void:
 	if $/root/World.wave_timer > 0:
-		task_label.text = "protect the egg"
+		task_label.text = "[center]protect the egg[/center]"
 	else:
-		task_label.text = "go to market[img=50]res://images/market.png[/img]"
+		task_label.text = "[center]go to market[img=50]res://images/market.png[/img][/center]"
 	
 func update_weapon() -> void:
 	if gun.current_weapon == gun.Weapons.BLASTER:

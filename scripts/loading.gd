@@ -31,7 +31,7 @@ func load_game() -> void:
 	canvas.get_node("VBox").visible = true
 	canvas.get_node("Weapon").visible = true
 	canvas.get_node("StatsLabel").visible = true
-	canvas.get_node("TaskLabel").visible = true
+	canvas.get_node("VBox/TaskLabel").visible = true
 	canvas.get_node("WaveDuration").visible = true
 	canvas.get_node("SwitchWeaponButton").visible = true
 	world.get_node("CameraPivot/Camera").current = false
@@ -55,7 +55,7 @@ func load_start() -> void:
 	canvas.get_node("VBox").visible = false
 	canvas.get_node("Weapon").visible = false
 	canvas.get_node("StatsLabel").visible = false
-	canvas.get_node("TaskLabel").visible = false
+	canvas.get_node("VBox/TaskLabel").visible = false
 	canvas.get_node("WaveDuration").visible = false
 	canvas.get_node("SwitchWeaponButton").visible = false
 	world.get_node("CameraPivot/Camera").current = true
