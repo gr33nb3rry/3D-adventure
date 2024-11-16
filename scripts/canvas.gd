@@ -32,6 +32,15 @@ var settings = {
 	"Shadows": [2, 3, "t_q"],
 	"Sounds": [1, 1, "t"]
 }
+var skins = {
+	"Orange": {"score":0, "color1":Color(1, 0.734, 0.389),"color2":Color(0.523, 0.259, 0)},
+	"Cyan": {"score":0, "color1":Color(0, 0.858, 0.612),"color2":Color(0.334, 0.261, 1)},
+	"Envy": {"score":0, "color1":Color(0.616, 0.893, 0),"color2":Color(0, 0.371, 0.301)},
+	"Sweety": {"score":0, "color1":Color(1, 0.626, 0.694),"color2":Color(0.723, 0, 0.515)},
+	"Bloody": {"score":0, "color1":Color(1, 0.384, 0.488),"color2":Color(0.118, 0, 0.06)},
+	"Luxury": {"score":0, "color1":Color(0.851, 0.716, 0.406),"color2":Color(0.187, 0.104, 0.022)},
+	"The Blackest": {"score":0, "color1":Color(0.251, 0.247, 0.287),"color2":Color(0, 0, 0)},
+}
 
 func _ready() -> void:
 	update_start()
@@ -244,6 +253,12 @@ func setup_settings(s) -> void:
 			var bus_idx = AudioServer.get_bus_index("Master")
 			AudioServer.set_bus_mute(bus_idx, settings[s][0] == 0)
 	
+func apply_skin(s:String):
+	var color1 = skins[s]["color1"]
+	var color2 = skins[s]["color2"]
+	$"../Skin".mesh.material.set("shader_parameter/color", color1)
+	$"../Skin".mesh.material.set("shader_parameter/shadow_color", color2)
+	
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
@@ -252,6 +267,7 @@ func _input(event: InputEvent) -> void:
 		is_stats_visible = !is_stats_visible
 		update_stats()
 	elif Input.is_action_just_pressed("pause") and player.is_active and $/root/World.is_in_game:
+		apply_skin("Bloody")
 		pause()
 	if Input.is_action_just_pressed("esc"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
