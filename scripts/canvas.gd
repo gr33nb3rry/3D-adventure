@@ -36,18 +36,7 @@ func _process(delta: float) -> void:
 
 func go_to_main_menu() -> void:
 	if is_paused: pause()
-	$Start.visible = true
-	$Pause.visible = false
-	$Pregnant.visible = false
-	$Crosshair.visible = false
-	$VBox.visible = false
-	$Weapon.visible = false
-	$StatsLabel.visible = false
-	$TaskLabel.visible = false
-	$WaveDuration.visible = false
-	$SwitchWeaponButton.visible = false
-	$/root/World/CameraPivot/Camera.current = true
-	$/root/World.end_game()
+	$/root/Loading.loading("start")
 	
 func update_start() -> void:
 	highscore_label.text = "[wave amp=50.0 freq=2.0 connected=1][center]highscore " + str(Stats.highscore) + "[/center][/wave]"

@@ -28,6 +28,12 @@ func start_gameplay() -> void:
 func stop_gameplay() -> void:
 	if not OS.has_feature("crazygames"): return
 	SDK.game.gameplayStop()
+func start_loading() -> void:
+	if not OS.has_feature("crazygames"): return
+	SDK.game.sdkGameLoadingStart()
+func stop_loading() -> void:
+	if not OS.has_feature("crazygames"): return
+	SDK.game.sdkGameLoadingStop()
 func happy_time() -> void:
 	if not OS.has_feature("crazygames"): return
 	SDK.game.happytime()

@@ -12,28 +12,7 @@ var new_wave_delay := 5
 var ad_timer := 0
 
 func start_new_game() -> void:
-	$Canvas/Start.visible = false
-	$Canvas/Crosshair.visible = true
-	$Canvas/VBox.visible = true
-	$Canvas/Weapon.visible = true
-	$Canvas/StatsLabel.visible = true
-	$Canvas/TaskLabel.visible = true
-	$Canvas/WaveDuration.visible = true
-	$Canvas/SwitchWeaponButton.visible = true
-	$CameraPivot/Camera.current = false
-	Stats.default()
-	$Canvas.refresh_upgrades()
-	$Canvas.update_cums()
-	$Canvas.update_turrel()
-	$Canvas.update_weapon()
-	$Player.scale = Vector3(Stats.player_size, Stats.player_size, Stats.player_size)
-	is_in_game = true
-	wave = 0
-	wave_timer = 1
-	$WaveTimer.start()
-	CrazySDK.start_gameplay()
-	Engine.time_scale = Stats.game_speed
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	$/root/Loading.loading("game")
 
 func end_game() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -102,7 +81,6 @@ func i_am_cumming() -> void:
 		white_sauce.global_position = position_pivot + Vector3(randf_range(-gap,gap), randf_range(-gap,gap), randf_range(-gap,gap))
 
 func pregnant(cum:Node3D) -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$WaveTimer.stop()
 	$CumTimer.stop()
 	for c in get_tree().get_nodes_in_group("Cum"): c.death()
@@ -115,6 +93,7 @@ func pregnant(cum:Node3D) -> void:
 	t.tween_property($Egg/Mesh.mesh.material, "shader_parameter/color", Color.WHITE, pregnant_time)
 	$Canvas/Crosshair.visible = false
 	await get_tree().create_timer(pregnant_time + 1.0).timeout
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	$Canvas/Pregnant.visible = true
 	$Canvas/Pregnant/VBox/HighscoreLabel.visible = wave - 1 > Stats.highscore
 	Engine.time_scale = 0.25

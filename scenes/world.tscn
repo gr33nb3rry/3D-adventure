@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=51 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b76ldhe6yg1bs" path="res://images/blaster_128.png" id="14_lg8ka"]
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
 [ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
+[ext_resource type="PackedScene" uid="uid://bhanrvf6vdmw4" path="res://scenes/loading.tscn" id="18_mmtpy"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
@@ -1328,6 +1329,8 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 24
 text = "000"
+
+[node name="Loading" parent="." instance=ExtResource("18_mmtpy")]
 
 [connection signal="timeout" from="CumTimer" to="." method="i_am_cumming"]
 [connection signal="timeout" from="WaveTimer" to="." method="wave_timer_next"]
