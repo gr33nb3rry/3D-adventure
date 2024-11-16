@@ -17,7 +17,6 @@
 [ext_resource type="Texture2D" uid="uid://b76ldhe6yg1bs" path="res://images/blaster_128.png" id="14_lg8ka"]
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
 [ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
-[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="18_8mkcq"]
 [ext_resource type="PackedScene" uid="uid://bhanrvf6vdmw4" path="res://scenes/loading.tscn" id="18_mmtpy"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
@@ -150,33 +149,7 @@ anti_aliasing_size = 0.25
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c4aq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qyur"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ebk"]
-bg_color = Color(0.306702, 0.225605, 0.166914, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lltud"]
-bg_color = Color(0.48001, 0.401643, 0.306377, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3ovj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjiu"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -228,6 +201,34 @@ anti_aliasing_size = 0.25
 bg_color = Color(0, 0, 0, 0.313726)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj30h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ebk"]
+bg_color = Color(0.306702, 0.225605, 0.166914, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lltud"]
+bg_color = Color(0.48001, 0.401643, 0.306377, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qyur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0r06"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -557,6 +558,7 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="Weapon" type="Control" parent="Canvas"]
+visible = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 3
 anchors_preset = 3
@@ -634,6 +636,26 @@ text = "[center][color=675f54]<tab> to show stats[/color][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="NotificationLabel" type="RichTextLabel" parent="Canvas"]
+visible = false
+custom_minimum_size = Vector2(60, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -278.0
+offset_bottom = -1027.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "[center][color=675f54]<esc> to show cursor[/color][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="Button" type="Button" parent="Canvas"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -644,15 +666,16 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_2c4aq")
 flat = true
 
 [node name="SwitchWeaponButton" type="Button" parent="Canvas"]
+visible = false
 custom_minimum_size = Vector2(125, 75)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -331.0
+offset_left = -337.15
 offset_top = -101.0
-offset_right = -206.0
+offset_right = -154.15
 offset_bottom = -26.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -661,41 +684,9 @@ size_flags_vertical = 4
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
-theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
-text = "switch"
-
-[node name="JoystickL" parent="Canvas" instance=ExtResource("18_8mkcq")]
-offset_left = 142.0
-offset_top = -513.0
-offset_right = 542.0
-offset_bottom = -113.0
-deadzone_size = 1.0
-joystick_mode = 1
-visibility_mode = 2
-action_left = "move_left"
-action_right = "move_right"
-action_up = "move_forward"
-action_down = "move_back"
-
-[node name="JoystickR" parent="Canvas" instance=ExtResource("18_8mkcq")]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -533.0
-offset_top = -530.0
-offset_right = -133.0
-offset_bottom = -130.0
-grow_horizontal = 0
-deadzone_size = 1.0
-joystick_mode = 1
-visibility_mode = 2
-action_left = "view_left"
-action_right = "view_right"
-action_up = "view_up"
-action_down = "view_down"
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u3ovj")
+text = "<Q> to switch"
+flat = true
 
 [node name="WaveDuration" type="Panel" parent="Canvas"]
 visible = false
@@ -1192,6 +1183,147 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0g1m1")
 text = "continue"
 
+[node name="Settings" type="CenterContainer" parent="Canvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="VBox" type="VBoxContainer" parent="Canvas/Settings"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Grid" type="GridContainer" parent="Canvas/Settings/VBox"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="AntiAliasing" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "anti aliasing"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/AntiAliasing"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Shadows" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "shadows"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Shadows"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sounds" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "sounds"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Sounds"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Canvas/Settings/VBox"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lvhlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mx0kb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0g1m1")
+text = "continue"
+
 [node name="Pause" type="Panel" parent="Canvas"]
 visible = false
 anchors_preset = 15
@@ -1371,6 +1503,12 @@ text = "000"
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidRicochet" to="Canvas" method="buy_upgrade" binds= ["AcidRicochet"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/PlayerSize" to="Canvas" method="buy_upgrade" binds= ["PlayerSize"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Button" to="Canvas" method="close_market"]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/AntiAliasing" to="Canvas" method="change_settings" binds= ["AntiAliasing"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Shadows" to="Canvas" method="change_settings" binds= ["Shadows"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sounds" to="Canvas" method="change_settings" binds= ["Sounds"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Button" to="Canvas" method="close_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button" to="Canvas" method="pause"]
+[connection signal="pressed" from="Canvas/Pause/VBox/Button2" to="Canvas" method="open_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button3" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Start/VBox/Button" to="." method="start_new_game"]
+[connection signal="pressed" from="Canvas/Start/VBox/Button2" to="Canvas" method="open_settings"]

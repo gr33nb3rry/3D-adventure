@@ -28,7 +28,7 @@ func _process(delta: float) -> void:
 
 func kill_cum(cum:Node3D) -> void:
 	cum.death()
-	Stats.cum_count += 1
+	Stats.cum_count += (1 if Stats.wave_duration == 60.0 else 2)
 	$/root/World/Canvas.update_cums()
 	if ricochet_count == 0:
 		death()

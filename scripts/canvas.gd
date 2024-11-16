@@ -27,6 +27,11 @@ var upgrades = {
 	"AcidRicochet":[0, 3, 50, 2, 50],
 	"PlayerSize": [0, 25, 5, 1.1, 5]
 }
+var settings = {
+	"AntiAliasing": [2, 2, "q"],
+	"Shadows": [2, 3, "t_q"],
+	"Sounds": [1, 1, "t"]
+}
 
 func _ready() -> void:
 	update_start()
@@ -40,7 +45,9 @@ func go_to_main_menu() -> void:
 	
 func update_start() -> void:
 	highscore_label.text = "[wave amp=50.0 freq=2.0 connected=1][center]highscore " + str(Stats.highscore) + "[/center][/wave]"
-	
+	for s in $Settings/VBox/Grid.get_children():
+		setup_settings(s.name)
+		
 func update_cums() -> void:
 	cums_label.text = str(Stats.cum_count)
 func update_turrel() -> void:
@@ -168,6 +175,74 @@ func decrease_wave_duration() -> void:
 	
 func change_weapon() -> void:
 	gun.change_weapon()
+	
+func open_settings() -> void:
+	player.is_active = false
+	update_settings()
+	$Crosshair.visible = false
+	$Settings.visible = true
+	$Pause.visible = false
+	$Start.visible = false
+	get_tree().paused = true
+	
+func close_settings() -> void:
+	$Crosshair.visible = true
+	$Settings.visible = false
+	player.is_active = true
+	if $/root/World.is_in_game:
+		$Pause.visible = true
+	else:
+		$Start.visible = true
+	get_tree().paused = false
+	
+func update_settings() -> void:
+	for u in $Settings/VBox/Grid.get_children():
+		var value
+		match settings[u.name][0]:
+			0: 
+				match settings[u.name][2]:
+					"t": value = "off"
+					"q": value = "low"
+					"t_q": value = "off"
+			1: 
+				match settings[u.name][2]:
+					"t": value = "on"
+					"q": value = "medium"
+					"t_q": value = "low"
+			2: 
+				match settings[u.name][2]:
+					"q": value = "high"
+					"t_q": value = "medium"
+			3: 
+				match settings[u.name][2]:
+					"q": value = "low"
+					"t_q": value = "high"
+		
+		u.get_node("Label").text = value
+		
+func change_settings(s:String) -> void:
+	settings[s][0] += 1
+	if settings[s][0] > settings[s][1]: settings[s][0] = 0
+	setup_settings(s)
+	update_settings()
+	
+func setup_settings(s) -> void:
+	match s:
+		"AntiAliasing": 
+			match settings[s][0]:
+				0: get_viewport().msaa_3d = Viewport.MSAA_DISABLED
+				1: get_viewport().msaa_3d = Viewport.MSAA_2X
+				2: get_viewport().msaa_3d = Viewport.MSAA_4X
+		"Shadows": 
+			if settings[s][0] != 0: $"../Light".shadow_enabled = true
+			match settings[s][0]:
+				0: $"../Light".shadow_enabled = false
+				1: RenderingServer.directional_shadow_atlas_set_size(1024, true)
+				2: RenderingServer.directional_shadow_atlas_set_size(4096, true)
+				3: RenderingServer.directional_shadow_atlas_set_size(8196, true)
+		"Sounds": 
+			var bus_idx = AudioServer.get_bus_index("Master")
+			AudioServer.set_bus_mute(bus_idx, settings[s][0] == 0)
 	
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
