@@ -8,7 +8,6 @@ var is_in_game := false
 var wave : int = 0
 var wave_timer : int = 60
 var new_wave_delay := 5
-
 var ad_timer := 0
 
 func start_new_game() -> void:

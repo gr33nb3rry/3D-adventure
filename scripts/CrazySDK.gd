@@ -20,8 +20,8 @@ func _ready() -> void:
 	adCallbacks["adError"] = adErrorCallback
 	adCallbacks["adStarted"] = adStartedCallback
 	
-	Stats.highscore = SDK.data.getItem("highscore")
-
+	Stats.highscore = JavaScriptBridge.eval("localStorage.getItem('highscore');")
+	
 func start_gameplay() -> void:
 	if not OS.has_feature("crazygames"): return
 	SDK.game.gameplayStart()
@@ -53,4 +53,4 @@ func request_ad() -> void:
 
 func save_data() -> void:
 	if not OS.has_feature("crazygames"): return
-	SDK.data.setItem("highscore", Stats.highscore)
+	JavaScriptBridge.eval("localStorage.setItem('highscore', "+str(Stats.highscore)+");")

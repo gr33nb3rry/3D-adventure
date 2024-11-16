@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=4 uid="uid://bh62g0eirsund"]
+[gd_scene load_steps=29 format=4 uid="uid://dv32qwh5c8aao"]
 
 [ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="1_2adcc"]
-[ext_resource type="Script" path="res://scripts/market.gd" id="2_37hej"]
 [ext_resource type="PackedScene" uid="uid://cg1ef5e6dl4s8" path="res://scenes/cum.tscn" id="3_4pgff"]
 [ext_resource type="Material" uid="uid://g08r531i6a3v" path="res://materials/cum_material.tres" id="3_qtle8"]
 [ext_resource type="Material" uid="uid://bgyf11nxhum40" path="res://materials/weapon_material.tres" id="4_fcs5n"]
@@ -1608,6 +1607,7 @@ volumetric_fog_density = 0.0278
 volumetric_fog_albedo = Color(0.235983, 0, 0.115724, 1)
 
 [node name="Demo" type="Node3D"]
+process_mode = 4
 
 [node name="Egg" type="StaticBody3D" parent="."]
 
@@ -1619,7 +1619,6 @@ shape = SubResource("SphereShape3D_atjeh")
 
 [node name="Market" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.135, 0)
-script = ExtResource("2_37hej")
 
 [node name="Mesh" type="MeshInstance3D" parent="Market"]
 mesh = SubResource("CapsuleMesh_rf432")

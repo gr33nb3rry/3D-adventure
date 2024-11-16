@@ -14,7 +14,7 @@ mouse_filter = 2
 script = ExtResource("1_xb0wo")
 
 [node name="Canvas" type="CanvasLayer" parent="."]
-layer = 2
+layer = 3
 
 [node name="Texture" type="TextureRect" parent="Canvas"]
 visible = false

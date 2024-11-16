@@ -37,12 +37,12 @@ func _process(delta: float) -> void:
 	pitch += view.y * pitch_sensitivity * 5.0
 
 func _physics_process(delta):
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
-	pitch = clamp(pitch, pitch_min, pitch_max)
-	#yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-	#pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-	
-	#if you don't want to lerp, set them directly
-	yaw_node.rotation_degrees.y = yaw
-	pitch_node.rotation_degrees.x = pitch
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED or $/root/World/Canvas/JoystickR.visible: 
+		pitch = clamp(pitch, pitch_min, pitch_max)
+		#yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+		#pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+		
+		#if you don't want to lerp, set them directly
+		yaw_node.rotation_degrees.y = yaw
+		pitch_node.rotation_degrees.x = pitch
 	

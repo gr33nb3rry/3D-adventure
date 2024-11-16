@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=52 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://b76ldhe6yg1bs" path="res://images/blaster_128.png" id="14_lg8ka"]
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
 [ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="18_8mkcq"]
 [ext_resource type="PackedScene" uid="uid://bhanrvf6vdmw4" path="res://scenes/loading.tscn" id="18_mmtpy"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
@@ -556,7 +557,6 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="Weapon" type="Control" parent="Canvas"]
-visible = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 3
 anchors_preset = 3
@@ -644,7 +644,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_2c4aq")
 flat = true
 
 [node name="SwitchWeaponButton" type="Button" parent="Canvas"]
-visible = false
 custom_minimum_size = Vector2(125, 75)
 anchors_preset = 3
 anchor_left = 1.0
@@ -667,6 +666,36 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
 text = "switch"
+
+[node name="JoystickL" parent="Canvas" instance=ExtResource("18_8mkcq")]
+offset_left = 142.0
+offset_top = -513.0
+offset_right = 542.0
+offset_bottom = -113.0
+deadzone_size = 1.0
+joystick_mode = 1
+visibility_mode = 2
+action_left = "move_left"
+action_right = "move_right"
+action_up = "move_forward"
+action_down = "move_back"
+
+[node name="JoystickR" parent="Canvas" instance=ExtResource("18_8mkcq")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -533.0
+offset_top = -530.0
+offset_right = -133.0
+offset_bottom = -130.0
+grow_horizontal = 0
+deadzone_size = 1.0
+joystick_mode = 1
+visibility_mode = 2
+action_left = "view_left"
+action_right = "view_right"
+action_up = "view_up"
+action_down = "view_down"
 
 [node name="WaveDuration" type="Panel" parent="Canvas"]
 visible = false
