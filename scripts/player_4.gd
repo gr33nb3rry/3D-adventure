@@ -36,6 +36,13 @@ func _physics_process(delta: float) -> void:
 		model_main.rotation.y = lerp_angle(model_main.rotation.y, cam_yaw.rotation.y + deg_to_rad(180), ROTATION_SPEED * delta)
 		var model_transform = model.transform.interpolate_with(model.transform.looking_at($Look/Point.position), ROTATION_SPEED * delta)
 		model.transform = model_transform
-		velocity += movement.normalized() * SPEED
+		velocity += movement.normalized() * SPEED * Stats.player_size
 	is_running = movement != Vector3.ZERO
 	move_and_slide()
+
+
+func _on_area_area_entered(area: Area3D) -> void:
+	if area.get_parent().is_in_group("Cum"): 
+		area.get_parent().death()
+		Stats.cum_count += 1
+		$/root/World/Canvas.update_cums()

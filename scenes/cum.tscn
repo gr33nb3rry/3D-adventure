@@ -21,7 +21,8 @@ bottom_radius = 0.31
 height = 0.2
 radial_segments = 16
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_esnhk"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_ypimj"]
+size = Vector3(1, 1, 2.17175)
 
 [node name="Cum" type="Node3D" groups=["Cum"]]
 script = ExtResource("1_8uths")
@@ -40,9 +41,7 @@ mesh = SubResource("CylinderMesh_imnkt")
 [node name="Area" type="Area3D" parent="."]
 
 [node name="Collision" type="CollisionShape3D" parent="Area"]
-shape = SubResource("SphereShape3D_esnhk")
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5708, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.585876)
+shape = SubResource("BoxShape3D_ypimj")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

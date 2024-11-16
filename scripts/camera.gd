@@ -9,7 +9,7 @@ signal set_cam_rotation(_cam_rotation : float)
 
 var yaw : float = 0
 var pitch : float = 0
-var yaw_sensitivity : float = 0.07
+var yaw_sensitivity : float = 0.09
 var pitch_sensitivity : float = 0.07
 var yaw_acceleration : float = 15
 var pitch_acceleration : float = 15
@@ -24,6 +24,7 @@ func _ready():
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	spring_arm.add_excluded_object(player.get_rid())
 	$CamYaw/CamPitch/SpringArm3D/Camera3D/Ray.add_exception(player)
+	$CamYaw/CamPitch/SpringArm3D/Camera3D/Ray.add_exception_rid($"../Model/Main/Gun")
 	#top_level = true
 
 func _input(event):
@@ -36,11 +37,12 @@ func _process(delta: float) -> void:
 	pitch += view.y * pitch_sensitivity * 5.0
 
 func _physics_process(delta):
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
 	pitch = clamp(pitch, pitch_min, pitch_max)
-	yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-	pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+	#yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+	#pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
 	
 	#if you don't want to lerp, set them directly
-	#yaw_node.rotation_degrees.y = yaw
-	#pitch_node.rotation_degrees.x = pitch
+	yaw_node.rotation_degrees.y = yaw
+	pitch_node.rotation_degrees.x = pitch
 	

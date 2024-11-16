@@ -1,11 +1,8 @@
-[gd_resource type="AudioStreamRandomizer" load_steps=3 format=3 uid="uid://v0daw0sk3ibx"]
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://v0daw0sk3ibx"]
 
-[ext_resource type="AudioStream" uid="uid://36dkpaf53bu0" path="res://sounds/step1.MP3" id="1_4bqs7"]
-[ext_resource type="AudioStream" uid="uid://cfr3bsq78tel3" path="res://sounds/step2.MP3" id="2_jdegu"]
+[ext_resource type="AudioStream" uid="uid://w573o1o3ydb8" path="res://sounds/step.MP3" id="1_s3kvq"]
 
 [resource]
-playback_mode = 2
 random_pitch = 1.1
-streams_count = 2
-stream_0/stream = ExtResource("1_4bqs7")
-stream_1/stream = ExtResource("2_jdegu")
+streams_count = 1
+stream_0/stream = ExtResource("1_s3kvq")

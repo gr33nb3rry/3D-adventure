@@ -15,14 +15,13 @@ func rotate_to_ground() -> void:
 	global_position = direction * (egg.get_node("Mesh").mesh.radius - $GroundPivot.position.y)
 	
 func shoot() -> void:
-	#$/root/World/Canvas/Debug.text = str(get_tree().get_node_count_in_group("Cum"))
 	if get_tree().get_node_count_in_group("Cum") == 0: return
-	audio.play()
 	var a = acid.instantiate()
 	acids_container.add_child(a)
 	a.global_position = $Mesh/AcidMesh.global_position
 	var nearest_cum = get_nearest_cum()
 	if nearest_cum == null: return
+	audio.play()
 	if !Stats.turrel_is_following:
 		a.direction = (nearest_cum.global_position - a.global_position).normalized()
 	else:
@@ -38,3 +37,6 @@ func get_nearest_cum() -> Node3D:
 				last_distance = global_position.distance_squared_to(cum.global_position)
 				nearest = cum
 	return nearest
+
+func death() -> void:
+	queue_free()

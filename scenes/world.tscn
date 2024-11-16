@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=50 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -13,8 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://dwsvimccm3wfi" path="res://images/builder.png" id="11_tx7yf"]
 [ext_resource type="Texture2D" uid="uid://cxp8eb48nanv2" path="res://images/blaster.png" id="12_4artd"]
 [ext_resource type="PackedScene" uid="uid://bvsupl0jtom03" path="res://scenes/market.tscn" id="13_0pxva"]
+[ext_resource type="Texture2D" uid="uid://b71eu242e2bcy" path="res://images/ad.png" id="14_b26d2"]
 [ext_resource type="Texture2D" uid="uid://b76ldhe6yg1bs" path="res://images/blaster_128.png" id="14_lg8ka"]
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
+[ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
@@ -26,13 +28,75 @@ rings = 64
 [sub_resource type="SphereShape3D" id="SphereShape3D_5aph4"]
 radius = 30.0
 
+[sub_resource type="Animation" id="Animation_3hk2r"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6),
+"transitions": PackedFloat32Array(1.03527, 1, 1, 7.72749),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.122173, 2.13105, 0.0872665), Vector3(-0.122173, 4.26035, 0), Vector3(0, 6.28319, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -5), Vector3(0, -2, 0), Vector3(0, 0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_fdv00"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ds374"]
+_data = {
+"RESET": SubResource("Animation_fdv00"),
+"idle": SubResource("Animation_3hk2r")
+}
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ytl6t"]
-sky_top_color = Color(0.205503, 0, 0.0338119, 1)
+sky_top_color = Color(0.394801, 0, 0.0590316, 1)
 sky_horizon_color = Color(0.203922, 0, 0.0352941, 1)
-sky_curve = 0.130583
-ground_bottom_color = Color(0.203922, 0, 0.0352941, 1)
+sky_curve = 4.03631
+ground_bottom_color = Color(0.177556, 0, 0.0298299, 1)
 ground_horizon_color = Color(0.203922, 0, 0.0352941, 1)
-ground_curve = 0.129961
+ground_curve = 1.07635
 
 [sub_resource type="Sky" id="Sky_178nq"]
 sky_material = SubResource("ProceduralSkyMaterial_ytl6t")
@@ -82,10 +146,86 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 anti_aliasing_size = 0.25
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c4aq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qyur"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ebk"]
+bg_color = Color(0.306702, 0.225605, 0.166914, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lltud"]
+bg_color = Color(0.48001, 0.401643, 0.306377, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjiu"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8vky"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuip2"]
+bg_color = Color(0.0884117, 0.580053, 0.895493, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oylob"]
+bg_color = Color(0.022318, 0.455606, 0.786262, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8807y"]
+bg_color = Color(0.3341, 0.781947, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj835"]
 bg_color = Color(0, 0, 0, 0.313726)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qyur"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj30h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0r06"]
 bg_color = Color(0, 0, 0, 0.501961)
@@ -100,7 +240,7 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yukoq"]
-bg_color = Color(0.443137, 0.545098, 0.647059, 0.737255)
+bg_color = Color(0.29856, 0.401009, 0.529282, 0.737255)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -195,34 +335,6 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ebk"]
-bg_color = Color(0.362257, 0.298852, 0.222594, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lltud"]
-bg_color = Color(0.48001, 0.401643, 0.306377, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj30h"]
-
 [node name="World" type="Node3D"]
 script = ExtResource("1_xhq08")
 
@@ -251,9 +363,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 31.135, 0)
 [node name="Player" parent="." instance=ExtResource("2_chlkg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0269694, 34.182, 2.69315)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0274723, 0.313777, -0.949099, -0.00907867, 0.949497, 0.313646, 0.999581, 0, 0.0289335, -43.0992, 31.6158, -20.9621)
-visible = false
+[node name="CameraPivot" type="Node3D" parent="."]
+
+[node name="Camera" type="Camera3D" parent="CameraPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 40.1401, 20.5853)
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraPivot"]
+libraries = {
+"": SubResource("AnimationLibrary_ds374")
+}
+autoplay = "idle"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_gv1ey")
@@ -267,15 +387,8 @@ sky_mode = 1
 process_mode = 3
 script = ExtResource("4_jc0p1")
 
-[node name="Debug" type="Label" parent="Canvas"]
-offset_right = 40.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0.98959, 0.447056, 1)
-theme_override_colors/font_outline_color = Color(9.02452e-08, 0.173344, 0.10345, 1)
-theme_override_constants/outline_size = 8
-text = "000"
-
 [node name="Crosshair" type="TextureRect" parent="Canvas"]
+visible = false
 texture_filter = 2
 custom_minimum_size = Vector2(10, 10)
 anchors_preset = 15
@@ -290,6 +403,7 @@ expand_mode = 1
 stretch_mode = 3
 
 [node name="VBox" type="VBoxContainer" parent="Canvas"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -408,23 +522,25 @@ size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 42
 text = "00:00"
 vertical_alignment = 1
 
 [node name="NewWaveTimerLabel" type="Label" parent="Canvas/VBox"]
+visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 50
 text = "next wave in 00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Weapon" type="Control" parent="Canvas"]
+visible = false
 custom_minimum_size = Vector2(400, 400)
 layout_mode = 3
 anchors_preset = 3
@@ -466,20 +582,182 @@ grow_vertical = 2
 texture = ExtResource("12_4artd")
 expand_mode = 1
 
+[node name="TitleLabel" type="RichTextLabel" parent="Canvas/Weapon"]
+custom_minimum_size = Vector2(200, 55)
+layout_mode = 0
+offset_left = 173.0
+offset_top = 57.0
+offset_right = 373.0
+offset_bottom = 112.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 42
+bbcode_enabled = true
+text = "[center][color=ffa224]BLASTER[/color][/center]
+[center][color=ff3965]BUILDER[/color][/center]"
+scroll_active = false
+shortcut_keys_enabled = false
+
 [node name="StatsLabel" type="RichTextLabel" parent="Canvas"]
+visible = false
 custom_minimum_size = Vector2(60, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_top = 13.0
 offset_right = 277.0
+offset_bottom = 13.0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
 theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("8_73fw1")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
 text = "[center][color=675f54]<tab> to show stats[/color][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="TaskLabel" type="RichTextLabel" parent="Canvas"]
+visible = false
+custom_minimum_size = Vector2(60, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -222.0
+offset_top = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "protect the egg
+"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2c4aq")
+flat = true
+
+[node name="SwitchWeaponButton" type="Button" parent="Canvas"]
+visible = false
+custom_minimum_size = Vector2(125, 75)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -331.0
+offset_top = -101.0
+offset_right = -206.0
+offset_bottom = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "switch"
+
+[node name="WaveDuration" type="Panel" parent="Canvas"]
+visible = false
+custom_minimum_size = Vector2(225, 80)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -605.0
+offset_right = -380.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_onjiu")
+
+[node name="WaveLabel" type="Label" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -26.71
+offset_right = 98.5
+offset_bottom = 7.29
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "wave duration − 50%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.235
+offset_top = 10.0
+offset_right = 4.765
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.39
+offset_top = -32.765
+offset_right = 13.61
+offset_bottom = 19.235
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_icons/icon = ExtResource("14_b26d2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n8vky")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uuip2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oylob")
+theme_override_styles/normal = SubResource("StyleBoxFlat_8807y")
+text = "+5 MIN"
+alignment = 0
 
 [node name="Pregnant" type="Panel" parent="Canvas"]
 visible = false
@@ -507,9 +785,33 @@ theme_override_fonts/normal_font = ExtResource("8_73fw1")
 theme_override_fonts/bold_font = ExtResource("8_73fw1")
 theme_override_font_sizes/normal_font_size = 200
 bbcode_enabled = true
-text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]PREGNANT[/center][/tornado][/wave]"
+text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]OOPS[/center][/tornado][/wave]"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="HighscoreLabel" type="RichTextLabel" parent="Canvas/Pregnant/VBox"]
+custom_minimum_size = Vector2(100.075, 79.985)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][center]new highscore[/center][/wave]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button3" type="Button" parent="Canvas/Pregnant/VBox"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "main menu"
 
 [node name="Market" type="CenterContainer" parent="Canvas"]
 visible = false
@@ -544,6 +846,7 @@ theme_override_icons/icon = ExtResource("8_obsu7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
 text = "turrel"
 autowrap_mode = 2
@@ -637,7 +940,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
 text = "gun cooldown 
-- 0.1 sec"
+− 0.1 sec"
 autowrap_mode = 2
 
 [node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/GunCooldown"]
@@ -804,6 +1107,51 @@ text = "000 00/00"
 horizontal_alignment = 3
 vertical_alignment = 1
 
+[node name="PlayerSize" type="Button" parent="Canvas/Market/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("17_sec56")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "increase player size"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/PlayerSize"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Market/VBox/Grid/PlayerSize/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_bssgl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Market/VBox/Grid/PlayerSize/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="Canvas/Market/VBox"]
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
@@ -885,16 +1233,116 @@ theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
 text = "main menu"
 
+[node name="Start" type="Panel" parent="Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qj835")
+
+[node name="VBox" type="VBoxContainer" parent="Canvas/Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(100.075, 213.35)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]Dare to come to me[/center][/tornado][/wave]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="HighscoreLabel" type="RichTextLabel" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(100.075, 79.985)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][center]highscore 5[/center][/wave]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lvhlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k3ofv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjohi")
+text = "start new game"
+
+[node name="Button2" type="Button" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "settings"
+
+[node name="Button3" type="Button" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "author"
+
+[node name="Debug" type="Label" parent="Canvas"]
+offset_left = 8.04
+offset_right = 48.04
+offset_bottom = 30.0
+theme_override_colors/font_color = Color(0.650481, 0.640645, 0.627232, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 24
+text = "000"
+
 [connection signal="timeout" from="CumTimer" to="." method="i_am_cumming"]
 [connection signal="timeout" from="WaveTimer" to="." method="wave_timer_next"]
+[connection signal="pressed" from="Canvas/Button" to="Canvas" method="capture_mouse"]
+[connection signal="pressed" from="Canvas/SwitchWeaponButton" to="Canvas" method="change_weapon"]
+[connection signal="pressed" from="Canvas/WaveDuration/Button" to="Canvas" method="decrease_wave_duration"]
+[connection signal="pressed" from="Canvas/Pregnant/VBox/Button3" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/Turrel" to="Canvas" method="buy_upgrade" binds= ["Turrel"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/GunFollow" to="Canvas" method="buy_upgrade" binds= ["GunFollow"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/GunCooldown" to="Canvas" method="buy_upgrade" binds= ["GunCooldown"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/TurrelFollow" to="Canvas" method="buy_upgrade" binds= ["TurrelFollow"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidSpeed" to="Canvas" method="buy_upgrade" binds= ["AcidSpeed"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidRicochet" to="Canvas" method="buy_upgrade" binds= ["AcidRicochet"]]
+[connection signal="pressed" from="Canvas/Market/VBox/Grid/PlayerSize" to="Canvas" method="buy_upgrade" binds= ["PlayerSize"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Button" to="Canvas" method="close_market"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button" to="Canvas" method="pause"]
+[connection signal="pressed" from="Canvas/Pause/VBox/Button3" to="Canvas" method="go_to_main_menu"]
+[connection signal="pressed" from="Canvas/Start/VBox/Button" to="." method="start_new_game"]
