@@ -52,6 +52,7 @@ func load_start() -> void:
 	canvas.get_node("Start").visible = true
 	canvas.get_node("Pause").visible = false
 	canvas.get_node("Pregnant").visible = false
+	canvas.get_node("Completed").visible = false
 	canvas.get_node("Crosshair").visible = false
 	canvas.get_node("VBox").visible = false
 	canvas.get_node("Weapon").visible = false

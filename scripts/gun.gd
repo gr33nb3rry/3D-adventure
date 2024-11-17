@@ -23,6 +23,9 @@ enum Weapons {
 var current_weapon : int = Weapons.BLASTER
 
 func _process(delta: float) -> void:
+	if Input.is_action_pressed("gun"):
+		if current_weapon == Weapons.BLASTER: shoot()
+		elif current_weapon == Weapons.BUILDER: build()
 	var pos = player.get_node("GunPos").global_position
 	global_position = pos
 	global_rotation = lerp(global_rotation, camera.global_rotation, ROTATION_SPEED * delta)
@@ -71,6 +74,3 @@ func change_weapon() -> void:
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("change_weapon"):
 		change_weapon()
-	if Input.is_action_just_pressed("gun"):
-		if current_weapon == Weapons.BLASTER: shoot()
-		elif current_weapon == Weapons.BUILDER: build()

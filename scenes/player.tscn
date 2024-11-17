@@ -642,8 +642,8 @@ size = Vector3(0.1, 0.1, 0.1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_pb316"]
 radius = 0.07
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_m0qa4"]
-radius = 0.52
+[sub_resource type="BoxShape3D" id="BoxShape3D_3q8ut"]
+size = Vector3(1, 1.48779, 1)
 
 [node name="Player" type="CharacterBody3D"]
 motion_mode = 1
@@ -844,6 +844,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0515583, 0)
 monitorable = false
 
 [node name="Collision" type="CollisionShape3D" parent="Area"]
-shape = SubResource("SphereShape3D_m0qa4")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.243896, 0)
+shape = SubResource("BoxShape3D_3q8ut")
 
 [connection signal="area_entered" from="Area" to="." method="_on_area_area_entered"]

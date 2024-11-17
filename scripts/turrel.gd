@@ -7,7 +7,8 @@ extends Node3D
 
 func _ready() -> void:
 	rotate_to_ground()
-	$Timer.start(Stats.turrel_cooldown)
+	update_cooldown()
+	$Timer.start()
 
 func update_cooldown() -> void:
 	$Timer.wait_time = Stats.turrel_cooldown

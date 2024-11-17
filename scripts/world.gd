@@ -45,10 +45,15 @@ func wave_start() -> void:
 	$Market.close()
 
 func wave_end():
+	if wave > 0:
+		Stats.star_count += 1
+		CrazySDK.save_data()
+		$Canvas.update_stars()
 	$CumTimer.stop()
 	for c in get_tree().get_nodes_in_group("Cum"): c.death()
 	$Canvas.update_task()
 	$Market.open()
+	if wave == 1: $Canvas.open_complete()
 	
 func wave_timer_next() -> void:
 	wave_timer -= 1
@@ -71,6 +76,7 @@ func increase_wave_duration() -> void:
 	Stats.wave_duration = 60.0
 
 func i_am_cumming() -> void:
+	$Audio.play()
 	var t = get_tree().create_tween()
 	t.tween_property($WorldEnvironment.environment, "background_energy_multiplier", 1.0, 0.5)
 	t.tween_property($WorldEnvironment.environment, "background_energy_multiplier", 0.6, 0.5)

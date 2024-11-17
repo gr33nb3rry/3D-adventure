@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		model_main.rotation.y = lerp_angle(model_main.rotation.y, cam_yaw.rotation.y + deg_to_rad(180), ROTATION_SPEED * delta)
 		var model_transform = model.transform.interpolate_with(model.transform.looking_at($Look/Point.position), ROTATION_SPEED * delta)
 		model.transform = model_transform
-		velocity += movement.normalized() * SPEED * Stats.player_size
+		velocity += movement.normalized() * SPEED * clamp(Stats.player_size / 2, 1.0, 2.0)
 	is_running = movement != Vector3.ZERO
 	move_and_slide()
 

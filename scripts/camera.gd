@@ -18,6 +18,8 @@ var pitch_min : float = -55
 var position_offset : Vector3 = Vector3(0, 1, 0)
 var position_offset_target : Vector3 = Vector3(0, 1, 0)
 
+var sensitivity := 1.0
+var is_smooth := false
 var is_aiming := false
 
 func _ready():
@@ -29,20 +31,21 @@ func _ready():
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		yaw += -event.relative.x * yaw_sensitivity
-		pitch += -event.relative.y * pitch_sensitivity
+		yaw += -event.relative.x * yaw_sensitivity * sensitivity
+		pitch += -event.relative.y * pitch_sensitivity * sensitivity
+		
 func _process(delta: float) -> void:
 	var view = Input.get_vector("view_left", "view_right", "view_down", "view_up")
-	yaw += -view.x * yaw_sensitivity * 5.0
-	pitch += view.y * pitch_sensitivity * 5.0
+	yaw += -view.x * yaw_sensitivity * 5.0 * sensitivity
+	pitch += view.y * pitch_sensitivity * 5.0 * sensitivity
 
 func _physics_process(delta):
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 
 		pitch = clamp(pitch, pitch_min, pitch_max)
-		#yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
-		#pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
-		
-		#if you don't want to lerp, set them directly
-		yaw_node.rotation_degrees.y = yaw
-		pitch_node.rotation_degrees.x = pitch
+		if is_smooth:
+			yaw_node.rotation_degrees.y = lerp(yaw_node.rotation_degrees.y, yaw, yaw_acceleration * delta)
+			pitch_node.rotation_degrees.x = lerp(pitch_node.rotation_degrees.x, pitch, pitch_acceleration * delta)
+		else:
+			yaw_node.rotation_degrees.y = yaw
+			pitch_node.rotation_degrees.x = pitch
 	

@@ -10,9 +10,10 @@ var is_active := true
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	apply_optimization()
+	speed = 10.0 + float($/root/World.wave - 1) * 0.1
 	await get_tree().create_timer(0.1).timeout
 	direction = (egg.global_position - global_position).normalized()
-	$Mesh.look_at(egg.global_position, Vector3.UP)
+	look_at(egg.global_position, Vector3.UP)
 
 func apply_optimization() -> void:
 	$Mesh.visible = !Stats.optimized_cum

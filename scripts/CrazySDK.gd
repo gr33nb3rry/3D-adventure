@@ -20,7 +20,19 @@ func _ready() -> void:
 	adCallbacks["adError"] = adErrorCallback
 	adCallbacks["adStarted"] = adStartedCallback
 	
-	Stats.highscore = JavaScriptBridge.eval("localStorage.getItem('highscore');")
+	if JavaScriptBridge.eval("(function() { return localStorage.getItem('highscore') !== null; })();"):
+		Stats.highscore = int(JavaScriptBridge.eval("localStorage.getItem('highscore');"))
+	if JavaScriptBridge.eval("(function() { return localStorage.getItem('stars') !== null; })();"):
+		Stats.star_count = int(JavaScriptBridge.eval("localStorage.getItem('stars');"))
+	if JavaScriptBridge.eval("(function() { return localStorage.getItem('skin') !== null; })();"):
+		$/root/World/Canvas.current_skin = str(JavaScriptBridge.eval("localStorage.getItem('skin');"))
+	if JavaScriptBridge.eval("(function() { return localStorage.getItem('gun_f') !== null; })();"):
+		$/root/World/Canvas.upgrades["GunFollow"][0] = int(JavaScriptBridge.eval("localStorage.getItem('gun_f');"))
+	if JavaScriptBridge.eval("(function() { return localStorage.getItem('turrel_f') !== null; })();"):
+		$/root/World/Canvas.upgrades["TurrelFollow"][0] = int(JavaScriptBridge.eval("localStorage.getItem('turrel_f');"))
+	$/root/World/Canvas.update_start()
+	$/root/World/Canvas.apply_skin($/root/World/Canvas.current_skin)
+	
 	
 func start_gameplay() -> void:
 	if not OS.has_feature("crazygames"): return
@@ -54,4 +66,7 @@ func request_ad() -> void:
 func save_data() -> void:
 	if not OS.has_feature("crazygames"): return
 	JavaScriptBridge.eval("localStorage.setItem('highscore', "+str(Stats.highscore)+");")
-	JavaScriptBridge.eval("localStorage.setItem('skin', "+$/root/World/Canvas.current_skin+");")
+	JavaScriptBridge.eval("localStorage.setItem('stars', "+str(Stats.star_count)+");")
+	JavaScriptBridge.eval("localStorage.setItem('skin', '"+str($/root/World/Canvas.current_skin)+"');")
+	JavaScriptBridge.eval("localStorage.setItem('gun_f', "+str($/root/World/Canvas.upgrades["GunFollow"][0])+");")
+	JavaScriptBridge.eval("localStorage.setItem('turrel_f', "+str($/root/World/Canvas.upgrades["TurrelFollow"][0])+");")

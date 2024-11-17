@@ -2,16 +2,17 @@
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
+[ext_resource type="AudioStream" uid="uid://dyucqr3sve5e4" path="res://sounds/cum_start.tres" id="2_n742p"]
 [ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_xwmor"]
 [ext_resource type="Shader" path="res://toon_shader.gdshader" id="3_4cbo3"]
 [ext_resource type="Material" uid="uid://dw242a5w543qw" path="res://materials/acid_material.tres" id="3_4vqqd"]
 [ext_resource type="Texture2D" uid="uid://d3osa6bqiuijk" path="res://crosshair.png" id="4_dc8ox"]
 [ext_resource type="Script" path="res://scripts/canvas.gd" id="4_jc0p1"]
-[ext_resource type="Texture2D" uid="uid://de0ka48fhumc1" path="res://icon.svg" id="6_yohan"]
 [ext_resource type="Script" path="res://scripts/gun_progress.gd" id="7_qsapa"]
 [ext_resource type="FontFile" uid="uid://datf66tlfj8k6" path="res://NewAmsterdam-Regular.ttf" id="8_73fw1"]
 [ext_resource type="Texture2D" uid="uid://c33aum5pji8jp" path="res://images/cum.png" id="8_bssgl"]
 [ext_resource type="Texture2D" uid="uid://cvcl5k5rr1cuk" path="res://images/turrel.png" id="8_obsu7"]
+[ext_resource type="Texture2D" uid="uid://q36rfa6fwijh" path="res://images/star.png" id="9_2gvbr"]
 [ext_resource type="Texture2D" uid="uid://dwsvimccm3wfi" path="res://images/builder.png" id="11_tx7yf"]
 [ext_resource type="Texture2D" uid="uid://cxp8eb48nanv2" path="res://images/blaster.png" id="12_4artd"]
 [ext_resource type="PackedScene" uid="uid://bvsupl0jtom03" path="res://scenes/market.tscn" id="13_0pxva"]
@@ -264,14 +265,6 @@ corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 anti_aliasing_size = 0.25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b2n4x"]
-bg_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-anti_aliasing_size = 0.25
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2c4aq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3ovj"]
@@ -353,6 +346,36 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvhlj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3ofv"]
+bg_color = Color(0.973778, 0.579602, 0, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wtr6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjohi"]
+bg_color = Color(1, 0.635294, 0.141176, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7qyur"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f0r06"]
@@ -395,8 +418,6 @@ corner_radius_bottom_left = 25
 corner_detail = 20
 anti_aliasing_size = 0.25
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvhlj"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx0kb"]
 bg_color = Color(0.626409, 0.483402, 0.320911, 1)
 border_width_left = 4
@@ -410,36 +431,8 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6wtr6"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g1m1"]
 bg_color = Color(0.728801, 0.608585, 0.443383, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k3ofv"]
-bg_color = Color(0.973778, 0.579602, 0, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sjohi"]
-bg_color = Color(1, 0.635294, 0.141176, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -470,6 +463,12 @@ script = ExtResource("1_xhq08")
 wait_time = 5.0
 
 [node name="WaveTimer" type="Timer" parent="."]
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 0)
+stream = ExtResource("2_n742p")
+unit_size = 30.0
+max_db = 5.0
 
 [node name="Egg" type="StaticBody3D" parent="."]
 
@@ -587,6 +586,28 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
+[node name="Stars" type="HBoxContainer" parent="Canvas/VBox/HBox"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="Canvas/VBox/HBox/Stars"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("9_2gvbr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/VBox/HBox/Stars"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "000"
+vertical_alignment = 1
+
 [node name="Cums" type="HBoxContainer" parent="Canvas/VBox/HBox"]
 layout_mode = 2
 size_flags_vertical = 4
@@ -622,7 +643,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Canvas/VBox/HBox/Turrels"]
-custom_minimum_size = Vector2(60, 0)
+custom_minimum_size = Vector2(41.22, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
@@ -654,28 +675,6 @@ max_value = 10.0
 value = 10.0
 show_percentage = false
 
-[node name="Control" type="MarginContainer" parent="Canvas/VBox/HBox"]
-visible = false
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="Panel" type="Panel" parent="Canvas/VBox/HBox/Control"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_b2n4x")
-
-[node name="Center" type="CenterContainer" parent="Canvas/VBox/HBox/Control"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Canvas/VBox/HBox/Control/Center"]
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-texture = ExtResource("6_yohan")
-expand_mode = 1
-
 [node name="WaveLabel" type="Label" parent="Canvas/VBox/HBox"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
@@ -688,18 +687,18 @@ text = "wave 000"
 vertical_alignment = 1
 
 [node name="WaveTimerLabel" type="Label" parent="Canvas/VBox/HBox"]
-custom_minimum_size = Vector2(80, 0)
+custom_minimum_size = Vector2(178, 0)
 layout_mode = 2
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 42
+theme_override_font_sizes/font_size = 50
 text = "00:00"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NewWaveTimerLabel" type="Label" parent="Canvas/VBox"]
-visible = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_vertical = 1
@@ -986,6 +985,63 @@ scroll_active = false
 shortcut_keys_enabled = false
 
 [node name="Button3" type="Button" parent="Canvas/Pregnant/VBox"]
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "main menu"
+
+[node name="Completed" type="Panel" parent="Canvas"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_qj835")
+
+[node name="VBox" type="VBoxContainer" parent="Canvas/Completed"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="RichTextLabel" parent="Canvas/Completed/VBox"]
+custom_minimum_size = Vector2(100.075, 240)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]COMPLETED[/center][/tornado][/wave]"
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="Button" type="Button" parent="Canvas/Completed/VBox"]
+custom_minimum_size = Vector2(250, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lvhlj")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k3ofv")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
+theme_override_styles/normal = SubResource("StyleBoxFlat_sjohi")
+text = "continue"
+
+[node name="Button4" type="Button" parent="Canvas/Completed/VBox"]
 custom_minimum_size = Vector2(200, 75)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1307,6 +1363,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0g1m1")
 text = "continue"
 
 [node name="Settings" type="CenterContainer" parent="Canvas"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1504,6 +1561,79 @@ text = "off"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Sensitivity" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "mouse
+sensitivity"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Sensitivity"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SmoothMouse" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "smooth mouse"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/SmoothMouse"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="Canvas/Settings/VBox"]
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
@@ -1682,17 +1812,14 @@ text = "settings"
 
 [node name="Skins" type="GridContainer" parent="Canvas/Start"]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = 1
 anchor_left = 1.0
-anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -281.0
-offset_top = -1022.0
-offset_right = -57.0
-offset_bottom = -32.0
+offset_left = -282.0
+offset_top = 60.0
+offset_right = -58.0
+offset_bottom = 1050.0
 grow_horizontal = 0
-grow_vertical = 0
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 
@@ -1933,7 +2060,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 32
-text = "pass wave 35"
+text = "pass wave 30"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -1973,7 +2100,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 32
-text = "pass wave 60"
+text = "pass wave 50"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -2013,7 +2140,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 32
-text = "pass wave 100"
+text = "pass wave 80"
 horizontal_alignment = 2
 vertical_alignment = 1
 
@@ -2058,7 +2185,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("8_bssgl")
+texture = ExtResource("9_2gvbr")
 expand_mode = 1
 stretch_mode = 4
 
@@ -2103,7 +2230,7 @@ custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("8_bssgl")
+texture = ExtResource("9_2gvbr")
 expand_mode = 1
 stretch_mode = 4
 
@@ -2151,6 +2278,32 @@ text = "permanent upgrades"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Stars" type="HBoxContainer" parent="Canvas/Start"]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 16.0
+offset_right = 419.0
+offset_bottom = 51.0
+size_flags_vertical = 4
+
+[node name="Icon" type="TextureRect" parent="Canvas/Start/Stars"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("9_2gvbr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Start/Stars"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "00"
+vertical_alignment = 1
+
 [node name="Debug" type="Label" parent="Canvas"]
 offset_left = 8.04
 offset_right = 48.04
@@ -2169,6 +2322,8 @@ text = "000"
 [connection signal="pressed" from="Canvas/SwitchWeaponButton" to="Canvas" method="change_weapon"]
 [connection signal="pressed" from="Canvas/WaveDuration/Button" to="Canvas" method="decrease_wave_duration"]
 [connection signal="pressed" from="Canvas/Pregnant/VBox/Button3" to="Canvas" method="go_to_main_menu"]
+[connection signal="pressed" from="Canvas/Completed/VBox/Button" to="Canvas" method="close_complete"]
+[connection signal="pressed" from="Canvas/Completed/VBox/Button4" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/Turrel" to="Canvas" method="buy_upgrade" binds= ["Turrel"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/GunCooldown" to="Canvas" method="buy_upgrade" binds= ["GunCooldown"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidSpeed" to="Canvas" method="buy_upgrade" binds= ["AcidSpeed"]]
@@ -2181,6 +2336,8 @@ text = "000"
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sounds" to="Canvas" method="change_settings" binds= ["Sounds"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/FPS" to="Canvas" method="change_settings" binds= ["FPS"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/Cum" to="Canvas" method="change_settings" binds= ["Cum"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sensitivity" to="Canvas" method="change_settings" binds= ["Sensitivity"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/SmoothMouse" to="Canvas" method="change_settings" binds= ["SmoothMouse"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Button" to="Canvas" method="close_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button" to="Canvas" method="pause"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button2" to="Canvas" method="open_settings"]
