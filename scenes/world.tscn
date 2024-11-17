@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=77 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
@@ -20,6 +20,14 @@
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
 [ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
 [ext_resource type="PackedScene" uid="uid://bhanrvf6vdmw4" path="res://scenes/loading.tscn" id="18_mmtpy"]
+[ext_resource type="Texture2D" uid="uid://b6wb7opkg7nev" path="res://images/s0.png" id="20_xt0nm"]
+[ext_resource type="Texture2D" uid="uid://bdlr8yof454j8" path="res://images/s1.png" id="21_nuj5y"]
+[ext_resource type="Texture2D" uid="uid://dtmcdsdm8j1l0" path="res://images/s2.png" id="22_padxr"]
+[ext_resource type="Texture2D" uid="uid://bd2dofv7y16rt" path="res://images/s3.png" id="23_4mm7t"]
+[ext_resource type="Texture2D" uid="uid://b4ovf16cudx1m" path="res://images/s4.png" id="24_vuvg3"]
+[ext_resource type="Texture2D" uid="uid://d3vmqbxjdmx40" path="res://images/s5.png" id="25_s1qoa"]
+[ext_resource type="Texture2D" uid="uid://b3hc5gte2b5ny" path="res://images/s6.png" id="26_bu3bv"]
+[ext_resource type="Texture2D" uid="uid://cv2ms7k4nmmyk" path="res://images/s7.png" id="27_sr3uf"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
@@ -81,6 +89,22 @@ shader_parameter/_rim_smoothness = 0.01
 
 [sub_resource type="SphereMesh" id="SphereMesh_ydffc"]
 material = SubResource("ShaderMaterial_3ed0m")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8opy"]
+render_priority = 0
+shader = ExtResource("3_4cbo3")
+shader_parameter/color = Color(0.74683, 0.358147, 0.169893, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.375
+shader_parameter/shadow_color = Color(0.249461, 0.0506845, 0, 1)
+shader_parameter/_specular_smoothness = 0.0
+shader_parameter/_specular_strength = 0.12
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
+
+[sub_resource type="SphereMesh" id="SphereMesh_k50rk"]
+material = SubResource("ShaderMaterial_a8opy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wxvxa"]
 render_priority = 0
@@ -371,18 +395,6 @@ corner_radius_bottom_left = 25
 corner_detail = 20
 anti_aliasing_size = 0.25
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilasp"]
-bg_color = Color(0, 0, 0, 0.501961)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvhlj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mx0kb"]
@@ -439,6 +451,18 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilasp"]
+bg_color = Color(0, 0, 0, 0.501961)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_xhq08")
 
@@ -460,30 +484,42 @@ mesh = SubResource("SphereMesh_bl5qs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -2.66927)
+visible = false
 mesh = SubResource("SphereMesh_bl5qs")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -1.66835)
+visible = false
 mesh = SubResource("SphereMesh_p5axw")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -0.660644)
+visible = false
 mesh = SubResource("SphereMesh_14gfu")
 
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 0.311167)
+visible = false
 mesh = SubResource("SphereMesh_ydffc")
 
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 1.31022)
+visible = false
+mesh = SubResource("SphereMesh_k50rk")
+
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 1.34344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 2.2609)
+visible = false
 mesh = SubResource("SphereMesh_18ys6")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 2.25648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 3.17394)
+visible = false
 mesh = SubResource("SphereMesh_hbr6h")
 
 [node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 3.24869)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 4.16615)
+visible = false
 mesh = SubResource("SphereMesh_sd8an")
 
 [node name="Cums" type="Node3D" parent="."]
@@ -1028,52 +1064,6 @@ text = "000 00/00"
 horizontal_alignment = 3
 vertical_alignment = 1
 
-[node name="GunFollow" type="Button" parent="Canvas/Market/VBox/Grid"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/outline_size = 8
-theme_override_constants/icon_max_width = 50
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-theme_override_icons/icon = ExtResource("14_lg8ka")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ilasp")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "gun follows target"
-autowrap_mode = 2
-
-[node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/GunFollow"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -18.0
-offset_bottom = 21.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Icon" type="TextureRect" parent="Canvas/Market/VBox/Grid/GunFollow/Stats"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_bssgl")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="Canvas/Market/VBox/Grid/GunFollow/Stats"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-text = "000 00/00"
-horizontal_alignment = 3
-vertical_alignment = 1
-
 [node name="GunCooldown" type="Button" parent="Canvas/Market/VBox/Grid"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -1111,51 +1101,6 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="Canvas/Market/VBox/Grid/GunCooldown/Stats"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-text = "000 00/00"
-horizontal_alignment = 3
-vertical_alignment = 1
-
-[node name="TurrelFollow" type="Button" parent="Canvas/Market/VBox/Grid"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/outline_size = 8
-theme_override_constants/icon_max_width = 50
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-theme_override_icons/icon = ExtResource("8_obsu7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "turrel follows target"
-autowrap_mode = 2
-
-[node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/TurrelFollow"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -18.0
-offset_bottom = 21.0
-grow_horizontal = 2
-alignment = 2
-
-[node name="Icon" type="TextureRect" parent="Canvas/Market/VBox/Grid/TurrelFollow/Stats"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("8_bssgl")
-expand_mode = 1
-stretch_mode = 4
-
-[node name="Label" type="Label" parent="Canvas/Market/VBox/Grid/TurrelFollow/Stats"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 8
@@ -1301,6 +1246,52 @@ text = "000 00/00"
 horizontal_alignment = 3
 vertical_alignment = 1
 
+[node name="TurrelCooldown" type="Button" parent="Canvas/Market/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("8_obsu7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "turrel cooldown
+− 0.1 sec"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/TurrelCooldown"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Market/VBox/Grid/TurrelCooldown/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_bssgl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Market/VBox/Grid/TurrelCooldown/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
 [node name="Button" type="Button" parent="Canvas/Market/VBox"]
 custom_minimum_size = Vector2(250, 75)
 layout_mode = 2
@@ -1316,7 +1307,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_0g1m1")
 text = "continue"
 
 [node name="Settings" type="CenterContainer" parent="Canvas"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1332,7 +1322,7 @@ theme_override_constants/separation = 40
 layout_mode = 2
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
-columns = 3
+columns = 4
 
 [node name="AntiAliasing" type="Button" parent="Canvas/Settings/VBox/Grid"]
 custom_minimum_size = Vector2(200, 100)
@@ -1425,6 +1415,78 @@ text = "sounds"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Sounds"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="FPS" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "show fps"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/FPS"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Cum" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "optimized sperm"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Cum"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1545,17 +1607,6 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="RichTextLabel" parent="Canvas/Start/VBox"]
-custom_minimum_size = Vector2(100.075, 213.35)
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("8_73fw1")
-theme_override_fonts/bold_font = ExtResource("8_73fw1")
-theme_override_font_sizes/normal_font_size = 200
-bbcode_enabled = true
-text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]Dare to come to me[/center][/tornado][/wave]"
-scroll_active = false
-shortcut_keys_enabled = false
-
 [node name="HighscoreLabel" type="RichTextLabel" parent="Canvas/Start/VBox"]
 custom_minimum_size = Vector2(100.075, 79.985)
 layout_mode = 2
@@ -1566,6 +1617,25 @@ bbcode_enabled = true
 text = "[wave amp=50.0 freq=2.0 connected=1][center]highscore 5[/center][/wave]"
 scroll_active = false
 shortcut_keys_enabled = false
+
+[node name="Label" type="RichTextLabel" parent="Canvas/Start/VBox"]
+custom_minimum_size = Vector2(100.075, 297.25)
+layout_mode = 2
+theme_override_constants/line_separation = -95
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_fonts/bold_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 200
+bbcode_enabled = true
+text = "[wave amp=50.0 freq=2.0 connected=1][tornado radius=7.0 freq=2.0 connected=1][center]
+Dare to come
+to me[/center][/tornado][/wave]"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+meta_underlined = false
+hint_underlined = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
 
 [node name="Button" type="Button" parent="Canvas/Start/VBox"]
 custom_minimum_size = Vector2(250, 75)
@@ -1581,6 +1651,21 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sjohi")
 text = "start new game"
 
+[node name="Button3" type="Button" parent="Canvas/Start/VBox"]
+visible = false
+custom_minimum_size = Vector2(200, 75)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "skins"
+
 [node name="Button2" type="Button" parent="Canvas/Start/VBox"]
 custom_minimum_size = Vector2(200, 75)
 layout_mode = 2
@@ -1595,19 +1680,476 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
 text = "settings"
 
-[node name="Button3" type="Button" parent="Canvas/Start/VBox"]
-custom_minimum_size = Vector2(200, 75)
+[node name="Skins" type="GridContainer" parent="Canvas/Start"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -1022.0
+offset_right = -57.0
+offset_bottom = -32.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="Orange" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("20_xt0nm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "orange"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Orange"]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 2"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Cyan" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("21_nuj5y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "cyan"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Cyan"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 3"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Envy" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("22_padxr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "envy"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Envy"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 7"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Sweety" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("23_4mm7t")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "sweety"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Sweety"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 12"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Smelly" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("24_vuvg3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "smelly"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Smelly"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 20"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Bloody" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("25_s1qoa")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "bloody"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Bloody"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 35"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Luxury" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("26_bu3bv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "luxury"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/Luxury"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 60"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="The Blackest" type="Button" parent="Canvas/Start/Skins"]
+custom_minimum_size = Vector2(224, 115)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(0.464172, 0.433889, 0.352727, 1)
+theme_override_colors/font_focus_color = Color(1, 0.839216, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 100
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("27_sr3uf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "the blackest"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Start/Skins/The Blackest"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "pass wave 100"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Skills" type="GridContainer" parent="Canvas/Start"]
+layout_mode = 1
+offset_left = 57.0
+offset_top = 60.0
+offset_right = 257.0
+offset_bottom = 1055.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="GunFollow" type="Button" parent="Canvas/Start/Skills"]
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("14_lg8ka")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ilasp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "gun follows target"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Start/Skills/GunFollow"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Start/Skills/GunFollow/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_bssgl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Start/Skills/GunFollow/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="TurrelFollow" type="Button" parent="Canvas/Start/Skills"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("8_obsu7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "turrel follows target"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Start/Skills/TurrelFollow"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Start/Skills/TurrelFollow/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_bssgl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Start/Skills/TurrelFollow/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="SkinsLabel" type="Label" parent="Canvas/Start"]
+custom_minimum_size = Vector2(222, 66)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -281.0
+offset_right = -59.0
+offset_bottom = 66.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.758668, 0.718314, 0.842024, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 36
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
-text = "author"
+text = "skins"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SkillsLabel" type="Label" parent="Canvas/Start"]
+custom_minimum_size = Vector2(222, 66)
+layout_mode = 1
+offset_left = 35.7
+offset_right = 291.7
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0.758668, 0.718314, 0.842024, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+text = "permanent upgrades"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Debug" type="Label" parent="Canvas"]
 offset_left = 8.04
@@ -1628,19 +2170,31 @@ text = "000"
 [connection signal="pressed" from="Canvas/WaveDuration/Button" to="Canvas" method="decrease_wave_duration"]
 [connection signal="pressed" from="Canvas/Pregnant/VBox/Button3" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/Turrel" to="Canvas" method="buy_upgrade" binds= ["Turrel"]]
-[connection signal="pressed" from="Canvas/Market/VBox/Grid/GunFollow" to="Canvas" method="buy_upgrade" binds= ["GunFollow"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/GunCooldown" to="Canvas" method="buy_upgrade" binds= ["GunCooldown"]]
-[connection signal="pressed" from="Canvas/Market/VBox/Grid/TurrelFollow" to="Canvas" method="buy_upgrade" binds= ["TurrelFollow"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidSpeed" to="Canvas" method="buy_upgrade" binds= ["AcidSpeed"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/AcidRicochet" to="Canvas" method="buy_upgrade" binds= ["AcidRicochet"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/PlayerSize" to="Canvas" method="buy_upgrade" binds= ["PlayerSize"]]
+[connection signal="pressed" from="Canvas/Market/VBox/Grid/TurrelCooldown" to="Canvas" method="buy_upgrade" binds= ["TurrelCooldown"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Button" to="Canvas" method="close_market"]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/AntiAliasing" to="Canvas" method="change_settings" binds= ["AntiAliasing"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/Shadows" to="Canvas" method="change_settings" binds= ["Shadows"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sounds" to="Canvas" method="change_settings" binds= ["Sounds"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/FPS" to="Canvas" method="change_settings" binds= ["FPS"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Cum" to="Canvas" method="change_settings" binds= ["Cum"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Button" to="Canvas" method="close_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button" to="Canvas" method="pause"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button2" to="Canvas" method="open_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button3" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Start/VBox/Button" to="." method="start_new_game"]
+[connection signal="pressed" from="Canvas/Start/VBox/Button3" to="Canvas" method="open_skins"]
 [connection signal="pressed" from="Canvas/Start/VBox/Button2" to="Canvas" method="open_settings"]
+[connection signal="pressed" from="Canvas/Start/Skins/Orange" to="Canvas" method="select_skin" binds= ["Orange"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Cyan" to="Canvas" method="select_skin" binds= ["Cyan"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Envy" to="Canvas" method="select_skin" binds= ["Envy"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Sweety" to="Canvas" method="select_skin" binds= ["Sweety"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Smelly" to="Canvas" method="select_skin" binds= ["Smelly"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Bloody" to="Canvas" method="select_skin" binds= ["Bloody"]]
+[connection signal="pressed" from="Canvas/Start/Skins/Luxury" to="Canvas" method="select_skin" binds= ["Luxury"]]
+[connection signal="pressed" from="Canvas/Start/Skins/The Blackest" to="Canvas" method="select_skin" binds= ["The Blackest"]]
+[connection signal="pressed" from="Canvas/Start/Skills/GunFollow" to="Canvas" method="buy_upgrade" binds= ["GunFollow"]]
+[connection signal="pressed" from="Canvas/Start/Skills/TurrelFollow" to="Canvas" method="buy_upgrade" binds= ["TurrelFollow"]]

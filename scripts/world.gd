@@ -62,10 +62,12 @@ func wave_timer_next() -> void:
 	if wave_timer == -new_wave_delay - 1: wave_start()
 	
 func decrease_wave_duration() -> void:
-	Stats.wave_duration = 30.0
+	$Canvas/WaveDuration/Button.disabled = true
 	if Stats.wave_duration > 30.0: wave_timer = clamp(wave_timer - 30, 1, 30)
+	Stats.wave_duration = 30.0
 	ad_timer += 300
 func increase_wave_duration() -> void:
+	$Canvas/WaveDuration/Button.disabled = false
 	Stats.wave_duration = 60.0
 
 func i_am_cumming() -> void:
@@ -74,7 +76,6 @@ func i_am_cumming() -> void:
 	t.tween_property($WorldEnvironment.environment, "background_energy_multiplier", 0.6, 0.5)
 	var so_much_cum = clamp(3.4 * wave - 1.73333, 1, 100)
 	var gap = float(so_much_cum) / 2.0
-	#var distance : float = clamp(2.52517 * so_much_cum + 247.9, 250.0, 500.0)
 	var distance : float = 200.0 + gap
 	var position_angle := 0.5
 	var position_pivot = Vector3(randf_range(-position_angle,position_angle), 1.0, randf_range(-position_angle,position_angle)) * distance

@@ -19,33 +19,41 @@ var is_stats_visible := false
 var is_paused := false
 
 var upgrades = {
-	"Turrel": [0, 10, 20, 1.2, 20],
+	"Turrel": [0, 10, 20, 1.5, 20],
 	"GunFollow": [0, 1, 5, 1, 5],
-	"GunCooldown": [0, 20, 6, 1.1, 6],
+	"GunCooldown": [0, 20, 6, 1.3, 6],
 	"TurrelFollow": [0, 1, 50, 1, 50],
-	"AcidSpeed": [0, 50, 5, 1.1, 5],
-	"AcidRicochet":[0, 3, 50, 2, 50],
-	"PlayerSize": [0, 25, 5, 1.1, 5]
+	"TurrelCooldown": [0, 30, 6, 1.3, 6],
+	"AcidSpeed": [0, 50, 5, 1.3, 5],
+	"AcidRicochet":[0, 3, 100, 10, 100],
+	"PlayerSize": [0, 25, 5, 1.5, 5]
 }
 var settings = {
 	"AntiAliasing": [2, 2, "q"],
 	"Shadows": [2, 3, "t_q"],
-	"Sounds": [1, 1, "t"]
+	"Sounds": [1, 1, "t"],
+	"FPS": [0, 1, "t"],
+	"Cum": [0, 1, "t"]
 }
 var skins = {
 	"Orange": {"score":0, "color1":Color(1, 0.734, 0.389),"color2":Color(0.523, 0.259, 0)},
-	"Cyan": {"score":0, "color1":Color(0, 0.858, 0.612),"color2":Color(0.334, 0.261, 1)},
-	"Envy": {"score":0, "color1":Color(0.616, 0.893, 0),"color2":Color(0, 0.371, 0.301)},
-	"Sweety": {"score":0, "color1":Color(1, 0.626, 0.694),"color2":Color(0.723, 0, 0.515)},
-	"Bloody": {"score":0, "color1":Color(1, 0.384, 0.488),"color2":Color(0.118, 0, 0.06)},
-	"Luxury": {"score":0, "color1":Color(0.851, 0.716, 0.406),"color2":Color(0.187, 0.104, 0.022)},
-	"The Blackest": {"score":0, "color1":Color(0.251, 0.247, 0.287),"color2":Color(0, 0, 0)},
+	"Cyan": {"score":3, "color1":Color(0, 0.858, 0.612),"color2":Color(0.334, 0.261, 1)},
+	"Envy": {"score":7, "color1":Color(0.616, 0.893, 0),"color2":Color(0, 0.371, 0.301)},
+	"Sweety": {"score":12, "color1":Color(1, 0.626, 0.694),"color2":Color(0.723, 0, 0.515)},
+	"Smelly": {"score":20, "color1":Color(0.747, 0.358, 0.17),"color2":Color(0.249, 0.051, 0)},
+	"Bloody": {"score":35, "color1":Color(1, 0.384, 0.488),"color2":Color(0.118, 0, 0.06)},
+	"Luxury": {"score":60, "color1":Color(0.851, 0.716, 0.406),"color2":Color(0.187, 0.104, 0.022)},
+	"The Blackest": {"score":100, "color1":Color(0.251, 0.247, 0.287),"color2":Color(0, 0, 0)},
 }
-
+var current_skin : String = "Orange"
+var is_fps_showing : bool = false
 func _ready() -> void:
 	update_start()
+	update_skins()
+	update_passive_skills()
 	
 func _process(delta: float) -> void:
+	if !is_fps_showing: return
 	debug_label.text = str(Engine.get_frames_per_second())
 
 func go_to_main_menu() -> void:
@@ -151,6 +159,13 @@ func update_market() -> void:
 	for u in $Market/VBox/Grid.get_children():
 		u.get_node("Stats/Label").text = str(upgrades[u.name][2]) + " " + str(upgrades[u.name][0]) + "/" + str(upgrades[u.name][1])
 		u.disabled = upgrades[u.name][0] == upgrades[u.name][1]
+		u.get_node("Stats/Label").visible = upgrades[u.name][0] != upgrades[u.name][1]
+	
+func update_passive_skills() -> void:
+	for u in $Start/Skills.get_children():
+		u.get_node("Stats/Label").text = str(upgrades[u.name][2]) + " " + str(upgrades[u.name][0]) + "/" + str(upgrades[u.name][1])
+		u.disabled = upgrades[u.name][0] == upgrades[u.name][1]
+		u.get_node("Stats/Label").visible = upgrades[u.name][0] != upgrades[u.name][1]
 	
 func buy_upgrade(button:String) -> void:
 	if Stats.cum_count < upgrades[button][2]: return
@@ -159,11 +174,14 @@ func buy_upgrade(button:String) -> void:
 		"GunFollow": Stats.gun_is_following = true
 		"GunCooldown": Stats.gun_cooldown -= 0.1
 		"TurrelFollow": Stats.turrel_is_following = true
+		"TurrelCooldown": Stats.turrel_cooldown -= 0.1
 		"AcidSpeed": Stats.acid_speed += 5.0
 		"AcidRicochet": Stats.acid_ricochet_count += 1
 		"PlayerSize": Stats.player_size += 0.2
 	Stats.cum_count -= upgrades[button][2]
 	player.scale = Vector3(Stats.player_size, Stats.player_size, Stats.player_size)
+	get_tree().call_group("Turrel", "update_cooldown")
+	
 	upgrades[button][0] += 1
 	if int(upgrades[button][2] * upgrades[button][3]) == upgrades[button][2]:
 		upgrades[button][2] = int(upgrades[button][2] * upgrades[button][3]) + 1
@@ -173,6 +191,7 @@ func buy_upgrade(button:String) -> void:
 	update_turrel()
 	update_cums()
 	update_market()
+	update_passive_skills()
 	
 func refresh_upgrades() -> void:
 	for u in upgrades:
@@ -188,21 +207,17 @@ func change_weapon() -> void:
 func open_settings() -> void:
 	player.is_active = false
 	update_settings()
-	$Crosshair.visible = false
 	$Settings.visible = true
 	$Pause.visible = false
 	$Start.visible = false
-	get_tree().paused = true
 	
 func close_settings() -> void:
-	$Crosshair.visible = true
 	$Settings.visible = false
 	player.is_active = true
 	if $/root/World.is_in_game:
 		$Pause.visible = true
 	else:
 		$Start.visible = true
-	get_tree().paused = false
 	
 func update_settings() -> void:
 	for u in $Settings/VBox/Grid.get_children():
@@ -252,6 +267,26 @@ func setup_settings(s) -> void:
 		"Sounds": 
 			var bus_idx = AudioServer.get_bus_index("Master")
 			AudioServer.set_bus_mute(bus_idx, settings[s][0] == 0)
+		"FPS":
+			is_fps_showing = settings[s][0] == 1
+			debug_label.visible = settings[s][0] == 1
+		"Cum": 
+			Stats.optimized_cum = settings[s][0] == 1
+			get_tree().call_group("Cum", "apply_optimization")
+	
+
+	
+func update_skins() -> void:
+	get_node("Start/Skins/"+current_skin)
+	for s in $Start/Skins.get_children():
+		s.disabled = skins[s.name]["score"] > Stats.highscore
+		s.get_node("Label").visible = skins[s.name]["score"] > Stats.highscore
+		s.set("theme_override_colors/font_color", (Color.GOLD if s.name == current_skin else Color.WHITE))
+	
+func select_skin(s:String) -> void:
+	current_skin = s
+	apply_skin(s)
+	update_skins()
 	
 func apply_skin(s:String):
 	var color1 = skins[s]["color1"]
@@ -267,7 +302,6 @@ func _input(event: InputEvent) -> void:
 		is_stats_visible = !is_stats_visible
 		update_stats()
 	elif Input.is_action_just_pressed("pause") and player.is_active and $/root/World.is_in_game:
-		apply_skin("Bloody")
 		pause()
 	if Input.is_action_just_pressed("esc"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

@@ -54,3 +54,4 @@ func request_ad() -> void:
 func save_data() -> void:
 	if not OS.has_feature("crazygames"): return
 	JavaScriptBridge.eval("localStorage.setItem('highscore', "+str(Stats.highscore)+");")
+	JavaScriptBridge.eval("localStorage.setItem('skin', "+$/root/World/Canvas.current_skin+");")

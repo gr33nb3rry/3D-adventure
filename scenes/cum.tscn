@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cg1ef5e6dl4s8"]
+[gd_scene load_steps=8 format=3 uid="uid://cg1ef5e6dl4s8"]
 
 [ext_resource type="Script" path="res://scripts/cum.gd" id="1_8uths"]
 [ext_resource type="Material" uid="uid://g08r531i6a3v" path="res://materials/cum_material.tres" id="2_b2v7h"]
+[ext_resource type="Texture2D" uid="uid://dkp8q667rq3pe" path="res://images/cum_optimized.png" id="3_354ik"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_8vu26"]
 material = ExtResource("2_b2v7h")
@@ -43,5 +44,12 @@ mesh = SubResource("CylinderMesh_imnkt")
 [node name="Collision" type="CollisionShape3D" parent="Area"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.585876)
 shape = SubResource("BoxShape3D_ypimj")
+
+[node name="Sprite" type="Sprite3D" parent="."]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+visible = false
+billboard = 1
+double_sided = false
+texture = ExtResource("3_354ik")
 
 [connection signal="body_entered" from="Area" to="." method="_on_area_body_entered"]

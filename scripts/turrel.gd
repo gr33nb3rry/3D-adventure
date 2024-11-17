@@ -7,6 +7,10 @@ extends Node3D
 
 func _ready() -> void:
 	rotate_to_ground()
+	$Timer.start(Stats.turrel_cooldown)
+
+func update_cooldown() -> void:
+	$Timer.wait_time = Stats.turrel_cooldown
 
 func rotate_to_ground() -> void:
 	look_at(Vector3.ZERO, Vector3.UP)
