@@ -4,6 +4,7 @@ extends Control
 @onready var canvas = $/root/World/Canvas
 
 func _ready() -> void:
+	CrazySDK.load_data()
 	await get_tree().create_timer(0.1).timeout
 	reparent(get_tree().get_root())
 
@@ -37,6 +38,7 @@ func load_game() -> void:
 	canvas.get_node("SwitchWeaponButton").visible = true
 	world.get_node("CameraPivot/Camera").current = false
 	Stats.default()
+	canvas.update_stats()
 	canvas.refresh_upgrades()
 	canvas.update_cums()
 	canvas.update_turrel()
@@ -45,6 +47,8 @@ func load_game() -> void:
 	world.is_in_game = true
 	world.wave = 0
 	world.wave_timer = 1
+	world.egg_health = Stats.egg_hp
+	canvas.bonus_cost = 1
 	world.get_node("WaveTimer").start()
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	

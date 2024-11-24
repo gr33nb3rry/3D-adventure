@@ -28,16 +28,20 @@ func _ready():
 	$CamYaw/CamPitch/SpringArm3D/Camera3D/Ray.add_exception(player)
 	$CamYaw/CamPitch/SpringArm3D/Camera3D/Ray.add_exception_rid($"../Model/Main/Gun")
 	#top_level = true
-
+	
+func get_sensitivity() -> float:
+	if sensitivity > 1.0: return sensitivity * 2.0
+	return sensitivity * 1.0
+	
 func _input(event):
 	if event is InputEventMouseMotion:
-		yaw += -event.relative.x * yaw_sensitivity * sensitivity
-		pitch += -event.relative.y * pitch_sensitivity * sensitivity
-		
+		yaw += -event.relative.x * yaw_sensitivity * get_sensitivity()
+		pitch += -event.relative.y * pitch_sensitivity * get_sensitivity()
+
 func _process(delta: float) -> void:
 	var view = Input.get_vector("view_left", "view_right", "view_down", "view_up")
-	yaw += -view.x * yaw_sensitivity * 5.0 * sensitivity
-	pitch += view.y * pitch_sensitivity * 5.0 * sensitivity
+	yaw += -view.x * yaw_sensitivity * yaw_acceleration * 30.0 * get_sensitivity() * delta
+	pitch += view.y * pitch_sensitivity * pitch_acceleration * 30.0 * get_sensitivity() * delta
 
 func _physics_process(delta):
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED: 

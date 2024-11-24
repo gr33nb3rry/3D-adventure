@@ -23,17 +23,18 @@ enum Weapons {
 var current_weapon : int = Weapons.BLASTER
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("gun"):
-		if current_weapon == Weapons.BLASTER: shoot()
-		elif current_weapon == Weapons.BUILDER: build()
+	if Input.is_action_pressed("gun") and current_weapon == Weapons.BLASTER:
+		shoot()
+	if Input.is_action_just_pressed("gun") and current_weapon == Weapons.BUILDER:
+		build()
 	var pos = player.get_node("GunPos").global_position
 	global_position = pos
 	global_rotation = lerp(global_rotation, camera.global_rotation, ROTATION_SPEED * delta)
 
 func shoot() -> void:
+	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
 	if !player.is_active: return
 	if !gun_progress.is_full: return
-	if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE: return
 	if aim_ray.is_colliding() and aim_ray.get_collider().name == "Egg": return
 	audio.stream = BLASTER_SOUND
 	audio.play()

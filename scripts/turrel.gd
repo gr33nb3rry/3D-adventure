@@ -38,7 +38,7 @@ func get_nearest_cum() -> Node3D:
 	var nearest : Node3D
 	var last_distance := 500000.0
 	for cum in get_tree().get_nodes_in_group("Cum"):
-			if !cum.is_followed and global_position.distance_squared_to(cum.global_position) < last_distance:
+			if !cum.is_followed and cum.is_active and global_position.distance_squared_to(cum.global_position) < last_distance:
 				last_distance = global_position.distance_squared_to(cum.global_position)
 				nearest = cum
 	return nearest

@@ -1,10 +1,9 @@
-[gd_scene load_steps=77 format=3 uid="uid://b6xif0rto0tl"]
+[gd_scene load_steps=63 format=3 uid="uid://b6xif0rto0tl"]
 
 [ext_resource type="Script" path="res://scripts/world.gd" id="1_xhq08"]
 [ext_resource type="PackedScene" uid="uid://cxlkxr1ykhym6" path="res://scenes/player.tscn" id="2_chlkg"]
 [ext_resource type="AudioStream" uid="uid://dyucqr3sve5e4" path="res://sounds/cum_start.tres" id="2_n742p"]
 [ext_resource type="Material" uid="uid://ch1w1xlc570o4" path="res://materials/egg_material.tres" id="2_xwmor"]
-[ext_resource type="Shader" path="res://toon_shader.gdshader" id="3_4cbo3"]
 [ext_resource type="Material" uid="uid://dw242a5w543qw" path="res://materials/acid_material.tres" id="3_4vqqd"]
 [ext_resource type="Texture2D" uid="uid://d3osa6bqiuijk" path="res://crosshair.png" id="4_dc8ox"]
 [ext_resource type="Script" path="res://scripts/canvas.gd" id="4_jc0p1"]
@@ -16,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://dwsvimccm3wfi" path="res://images/builder.png" id="11_tx7yf"]
 [ext_resource type="Texture2D" uid="uid://cxp8eb48nanv2" path="res://images/blaster.png" id="12_4artd"]
 [ext_resource type="PackedScene" uid="uid://bvsupl0jtom03" path="res://scenes/market.tscn" id="13_0pxva"]
-[ext_resource type="Texture2D" uid="uid://b71eu242e2bcy" path="res://images/ad.png" id="14_b26d2"]
 [ext_resource type="Texture2D" uid="uid://b76ldhe6yg1bs" path="res://images/blaster_128.png" id="14_lg8ka"]
 [ext_resource type="Texture2D" uid="uid://bhuae5jrupdnx" path="res://images/acid.png" id="15_l8hc4"]
 [ext_resource type="Texture2D" uid="uid://ip43gbnl062n" path="res://images/player.png" id="17_sec56"]
@@ -29,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://d3vmqbxjdmx40" path="res://images/s5.png" id="25_s1qoa"]
 [ext_resource type="Texture2D" uid="uid://b3hc5gte2b5ny" path="res://images/s6.png" id="26_bu3bv"]
 [ext_resource type="Texture2D" uid="uid://cv2ms7k4nmmyk" path="res://images/s7.png" id="27_sr3uf"]
+[ext_resource type="Texture2D" uid="uid://b1oa8qcctoxf4" path="res://images/egg.png" id="29_rg5qk"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_atlsw"]
 material = ExtResource("2_xwmor")
@@ -42,118 +41,6 @@ radius = 30.0
 
 [sub_resource type="SphereMesh" id="SphereMesh_bl5qs"]
 material = ExtResource("3_4vqqd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mwk31"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(2.11775e-06, 0.857953, 0.612307, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.333888, 0.261392, 1, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_p5axw"]
-material = SubResource("ShaderMaterial_mwk31")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4cdd"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(0.616025, 0.892867, 3.85046e-07, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0, 0.371025, 0.300601, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_14gfu"]
-material = SubResource("ShaderMaterial_k4cdd")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ed0m"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(1, 0.626071, 0.693953, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.722814, 1.83859e-05, 0.515098, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_ydffc"]
-material = SubResource("ShaderMaterial_3ed0m")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8opy"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(0.74683, 0.358147, 0.169893, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.249461, 0.0506845, 0, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_k50rk"]
-material = SubResource("ShaderMaterial_a8opy")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxvxa"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(1, 0.38444, 0.487975, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.118095, 1.35368e-07, 0.0604447, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_18ys6"]
-material = SubResource("ShaderMaterial_wxvxa")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dcgym"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(0.850873, 0.71619, 0.40559, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0.186959, 0.104401, 0.0221045, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_hbr6h"]
-material = SubResource("ShaderMaterial_dcgym")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_x2op6"]
-render_priority = 0
-shader = ExtResource("3_4cbo3")
-shader_parameter/color = Color(0.250663, 0.247079, 0.286983, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.375
-shader_parameter/shadow_color = Color(0, 0, 0, 1)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.12
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
-
-[sub_resource type="SphereMesh" id="SphereMesh_sd8an"]
-material = SubResource("ShaderMaterial_x2op6")
 
 [sub_resource type="Animation" id="Animation_fdv00"]
 length = 0.001
@@ -235,11 +122,8 @@ sky = SubResource("Sky_178nq")
 ambient_light_color = Color(0.860389, 0.588175, 0.469213, 1)
 ambient_light_sky_contribution = 0.25
 tonemap_mode = 2
-ssao_enabled = true
-ssil_enabled = true
 glow_enabled = true
 fog_sky_affect = 0.0
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0278
 volumetric_fog_albedo = Color(0.235983, 0, 0.115724, 1)
 
@@ -269,57 +153,6 @@ anti_aliasing_size = 0.25
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u3ovj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjiu"]
-bg_color = Color(0, 0, 0, 0.501961)
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8vky"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuip2"]
-bg_color = Color(0.0884117, 0.580053, 0.895493, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oylob"]
-bg_color = Color(0.022318, 0.455606, 0.786262, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8807y"]
-bg_color = Color(0.3341, 0.781947, 1, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0, 0, 0, 0.501961)
-corner_radius_top_left = 25
-corner_radius_top_right = 25
-corner_radius_bottom_right = 25
-corner_radius_bottom_left = 25
-anti_aliasing_size = 0.25
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj835"]
-bg_color = Color(0, 0, 0, 0.313726)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj30h"]
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2ebk"]
 bg_color = Color(0.306702, 0.225605, 0.166914, 1)
 border_width_left = 4
@@ -345,6 +178,11 @@ corner_radius_top_right = 25
 corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qj835"]
+bg_color = Color(0, 0, 0, 0.313726)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lj30h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lvhlj"]
 
@@ -444,6 +282,65 @@ corner_radius_bottom_right = 25
 corner_radius_bottom_left = 25
 anti_aliasing_size = 0.25
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_onjiu"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n8vky"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8807y"]
+bg_color = Color(0.423709, 0.458941, 0.501097, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uuip2"]
+bg_color = Color(0.0884117, 0.580053, 0.895493, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oylob"]
+bg_color = Color(0.022318, 0.455606, 0.786262, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5fhu"]
+bg_color = Color(0.351617, 0.726748, 0.944563, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+anti_aliasing_size = 0.25
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilasp"]
 bg_color = Color(0, 0, 0, 0.501961)
 border_width_left = 4
@@ -480,46 +377,6 @@ shape = SubResource("SphereShape3D_5aph4")
 
 [node name="Skin" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_bl5qs")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -2.66927)
-visible = false
-mesh = SubResource("SphereMesh_bl5qs")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -1.66835)
-visible = false
-mesh = SubResource("SphereMesh_p5axw")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, -0.660644)
-visible = false
-mesh = SubResource("SphereMesh_14gfu")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 0.311167)
-visible = false
-mesh = SubResource("SphereMesh_ydffc")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 1.31022)
-visible = false
-mesh = SubResource("SphereMesh_k50rk")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 2.2609)
-visible = false
-mesh = SubResource("SphereMesh_18ys6")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 3.17394)
-visible = false
-mesh = SubResource("SphereMesh_hbr6h")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75876, 30.8285, 4.16615)
-visible = false
-mesh = SubResource("SphereMesh_sd8an")
 
 [node name="Cums" type="Node3D" parent="."]
 
@@ -711,16 +568,17 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TaskLabel" type="RichTextLabel" parent="Canvas/VBox"]
-custom_minimum_size = Vector2(60, 55)
+custom_minimum_size = Vector2(60, 82.22)
 layout_mode = 2
 mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
 theme_override_constants/outline_size = 8
+theme_override_constants/line_separation = -10
 theme_override_fonts/normal_font = ExtResource("8_73fw1")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]protect the egg[/center]
-"
+text = "[center]protect the egg [img=50]res://images/egg.png[/img]
+1 hp[/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -799,7 +657,7 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/normal_font = ExtResource("8_73fw1")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center][color=675f54]<tab> to show stats[/color][/center]"
+text = "[center][color=675f54]<t> to show stats[/color][/center]"
 scroll_active = false
 shortcut_keys_enabled = false
 
@@ -811,7 +669,8 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -278.0
-offset_bottom = -1027.0
+offset_top = 13.0
+offset_bottom = -1014.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
@@ -840,10 +699,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -337.15
-offset_top = -101.0
-offset_right = -154.15
-offset_bottom = -26.0
+offset_left = -370.0
+offset_top = -132.735
+offset_right = -187.0
+offset_bottom = -57.735
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 4
@@ -852,96 +711,11 @@ theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("8_73fw1")
 theme_override_font_sizes/font_size = 36
 theme_override_styles/focus = SubResource("StyleBoxEmpty_u3ovj")
-text = "<Q> to switch"
+theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
+text = "q to switch"
 flat = true
-
-[node name="WaveDuration" type="Panel" parent="Canvas"]
-visible = false
-custom_minimum_size = Vector2(225, 80)
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -605.0
-offset_right = -380.0
-offset_bottom = 80.0
-grow_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_onjiu")
-
-[node name="WaveLabel" type="Label" parent="Canvas/WaveDuration"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -98.5
-offset_top = -26.71
-offset_right = 98.5
-offset_bottom = 7.29
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(0.817131, 0.859711, 0.887025, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
-theme_override_constants/line_spacing = -10
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 28
-text = "wave duration − 50%
-2x reward"
-vertical_alignment = 1
-
-[node name="DurationLabel" type="Label" parent="Canvas/WaveDuration"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -95.235
-offset_top = 10.0
-offset_right = 4.765
-offset_bottom = 54.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 36
-text = "00:00"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Button" type="Button" parent="Canvas/WaveDuration"]
-custom_minimum_size = Vector2(125, 0)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -114.39
-offset_top = -32.765
-offset_right = 13.61
-offset_bottom = 19.235
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/outline_size = 8
-theme_override_constants/h_separation = 0
-theme_override_constants/icon_max_width = 30
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 36
-theme_override_icons/icon = ExtResource("14_b26d2")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_n8vky")
-theme_override_styles/hover = SubResource("StyleBoxFlat_uuip2")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_oylob")
-theme_override_styles/normal = SubResource("StyleBoxFlat_8807y")
-text = "+5 MIN"
-alignment = 0
 
 [node name="Pregnant" type="Panel" parent="Canvas"]
 visible = false
@@ -1089,7 +863,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "turrel"
+text = "turret"
 autowrap_mode = 2
 
 [node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/Turrel"]
@@ -1135,7 +909,7 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
 text = "gun cooldown 
-− 0.1 sec"
+− 0.05 sec"
 autowrap_mode = 2
 
 [node name="Stats" type="HBoxContainer" parent="Canvas/Market/VBox/Grid/GunCooldown"]
@@ -1316,7 +1090,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "turrel cooldown
+text = "turret cooldown
 − 0.1 sec"
 autowrap_mode = 2
 
@@ -1381,7 +1155,7 @@ theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 4
 
-[node name="AntiAliasing" type="Button" parent="Canvas/Settings/VBox/Grid"]
+[node name="Sensitivity" type="Button" parent="Canvas/Settings/VBox/Grid"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1396,10 +1170,11 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "anti aliasing"
+text = "mouse
+sensitivity"
 autowrap_mode = 2
 
-[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/AntiAliasing"]
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Sensitivity"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1417,7 +1192,7 @@ text = "off"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Shadows" type="Button" parent="Canvas/Settings/VBox/Grid"]
+[node name="SmoothMouse" type="Button" parent="Canvas/Settings/VBox/Grid"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -1432,10 +1207,10 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "shadows"
+text = "smooth mouse"
 autowrap_mode = 2
 
-[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Shadows"]
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/SmoothMouse"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1525,6 +1300,78 @@ text = "off"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="AntiAliasing" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "anti aliasing"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/AntiAliasing"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Shadows" type="Button" parent="Canvas/Settings/VBox/Grid"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "shadows"
+autowrap_mode = 2
+
+[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Shadows"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -179.945
+offset_top = -14.945
+offset_right = -13.945
+offset_bottom = 24.055
+grow_horizontal = 0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "off"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Cum" type="Button" parent="Canvas/Settings/VBox/Grid"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -1540,83 +1387,10 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "optimized sperm"
+text = "3d optimization"
 autowrap_mode = 2
 
 [node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Cum"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -179.945
-offset_top = -14.945
-offset_right = -13.945
-offset_bottom = 24.055
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-text = "off"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Sensitivity" type="Button" parent="Canvas/Settings/VBox/Grid"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_constants/icon_max_width = 50
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "mouse
-sensitivity"
-autowrap_mode = 2
-
-[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/Sensitivity"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -179.945
-offset_top = -14.945
-offset_right = -13.945
-offset_bottom = 24.055
-grow_horizontal = 0
-size_flags_horizontal = 3
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-text = "off"
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="SmoothMouse" type="Button" parent="Canvas/Settings/VBox/Grid"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_colors/font_disabled_color = Color(1, 0.8, 0, 1)
-theme_override_constants/outline_size = 8
-theme_override_constants/icon_max_width = 50
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 32
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
-theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_yukoq")
-theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "smooth mouse"
-autowrap_mode = 2
-
-[node name="Label" type="Label" parent="Canvas/Settings/VBox/Grid/SmoothMouse"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -1719,6 +1493,138 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
 text = "main menu"
 
+[node name="WaveDuration" type="Panel" parent="Canvas"]
+visible = false
+custom_minimum_size = Vector2(225, 80)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -605.0
+offset_right = -380.0
+offset_bottom = 80.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_onjiu")
+
+[node name="WaveLabel" type="Label" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.5
+offset_top = -26.71
+offset_right = 98.5
+offset_bottom = 7.29
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0.817131, 0.859711, 0.887025, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/line_spacing = -10
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 28
+text = "wave duration − 50%
+3x reward"
+vertical_alignment = 1
+
+[node name="DurationLabel" type="Label" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.235
+offset_top = 10.0
+offset_right = 4.765
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0.501961)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Canvas/WaveDuration"]
+custom_minimum_size = Vector2(138, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -114.39
+offset_top = -32.765
+offset_right = 13.61
+offset_bottom = 19.235
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/outline_size = 8
+theme_override_constants/h_separation = 0
+theme_override_constants/icon_max_width = 30
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n8vky")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_8807y")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uuip2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_oylob")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5fhu")
+alignment = 0
+
+[node name="Ad" type="RichTextLabel" parent="Canvas/WaveDuration/Button"]
+visible = false
+custom_minimum_size = Vector2(128, 48.28)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.0
+offset_top = -24.14
+offset_right = 66.0
+offset_bottom = 24.14
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 38
+bbcode_enabled = true
+text = "[img=30]res://images/ad.png[/img]+3 min"
+scroll_active = false
+
+[node name="Star" type="RichTextLabel" parent="Canvas/WaveDuration/Button"]
+custom_minimum_size = Vector2(128, 48.28)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -18.0
+offset_right = 88.0
+offset_bottom = 30.28
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("8_73fw1")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]00[img=30]res://images/star.png[/img]+3 min[/center]"
+scroll_active = false
+
 [node name="Start" type="Panel" parent="Canvas"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -1780,21 +1686,6 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_k3ofv")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_6wtr6")
 theme_override_styles/normal = SubResource("StyleBoxFlat_sjohi")
 text = "start new game"
-
-[node name="Button3" type="Button" parent="Canvas/Start/VBox"]
-visible = false
-custom_minimum_size = Vector2(200, 75)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("8_73fw1")
-theme_override_font_sizes/font_size = 36
-theme_override_styles/focus = SubResource("StyleBoxEmpty_lj30h")
-theme_override_styles/hover = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_d2ebk")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lltud")
-text = "skins"
 
 [node name="Button2" type="Button" parent="Canvas/Start/VBox"]
 custom_minimum_size = Vector2(200, 75)
@@ -2153,6 +2044,96 @@ offset_bottom = 1055.0
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 
+[node name="EggHP" type="Button" parent="Canvas/Start/Skills"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("29_rg5qk")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "egg hp + 1"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Start/Skills/EggHP"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Start/Skills/EggHP/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_2gvbr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Start/Skills/EggHP/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
+[node name="CumBonus" type="Button" parent="Canvas/Start/Skills"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/outline_size = 8
+theme_override_constants/icon_max_width = 50
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+theme_override_icons/icon = ExtResource("8_bssgl")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
+theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
+text = "bonus reward + 1"
+autowrap_mode = 2
+
+[node name="Stats" type="HBoxContainer" parent="Canvas/Start/Skills/CumBonus"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -18.0
+offset_bottom = 21.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Icon" type="TextureRect" parent="Canvas/Start/Skills/CumBonus/Stats"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_2gvbr")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Canvas/Start/Skills/CumBonus/Stats"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8_73fw1")
+theme_override_font_sizes/font_size = 32
+text = "000 00/00"
+horizontal_alignment = 3
+vertical_alignment = 1
+
 [node name="GunFollow" type="Button" parent="Canvas/Start/Skills"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -2213,7 +2194,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_7qyur")
 theme_override_styles/disabled = SubResource("StyleBoxFlat_f0r06")
 theme_override_styles/hover = SubResource("StyleBoxFlat_yukoq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_0mq83")
-text = "turrel follows target"
+text = "turret follows target"
 autowrap_mode = 2
 
 [node name="Stats" type="HBoxContainer" parent="Canvas/Start/Skills/TurrelFollow"]
@@ -2320,7 +2301,6 @@ text = "000"
 [connection signal="timeout" from="WaveTimer" to="." method="wave_timer_next"]
 [connection signal="pressed" from="Canvas/Button" to="Canvas" method="capture_mouse"]
 [connection signal="pressed" from="Canvas/SwitchWeaponButton" to="Canvas" method="change_weapon"]
-[connection signal="pressed" from="Canvas/WaveDuration/Button" to="Canvas" method="decrease_wave_duration"]
 [connection signal="pressed" from="Canvas/Pregnant/VBox/Button3" to="Canvas" method="go_to_main_menu"]
 [connection signal="pressed" from="Canvas/Completed/VBox/Button" to="Canvas" method="close_complete"]
 [connection signal="pressed" from="Canvas/Completed/VBox/Button4" to="Canvas" method="go_to_main_menu"]
@@ -2331,19 +2311,19 @@ text = "000"
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/PlayerSize" to="Canvas" method="buy_upgrade" binds= ["PlayerSize"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Grid/TurrelCooldown" to="Canvas" method="buy_upgrade" binds= ["TurrelCooldown"]]
 [connection signal="pressed" from="Canvas/Market/VBox/Button" to="Canvas" method="close_market"]
-[connection signal="pressed" from="Canvas/Settings/VBox/Grid/AntiAliasing" to="Canvas" method="change_settings" binds= ["AntiAliasing"]]
-[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Shadows" to="Canvas" method="change_settings" binds= ["Shadows"]]
-[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sounds" to="Canvas" method="change_settings" binds= ["Sounds"]]
-[connection signal="pressed" from="Canvas/Settings/VBox/Grid/FPS" to="Canvas" method="change_settings" binds= ["FPS"]]
-[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Cum" to="Canvas" method="change_settings" binds= ["Cum"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sensitivity" to="Canvas" method="change_settings" binds= ["Sensitivity"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Grid/SmoothMouse" to="Canvas" method="change_settings" binds= ["SmoothMouse"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Sounds" to="Canvas" method="change_settings" binds= ["Sounds"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/FPS" to="Canvas" method="change_settings" binds= ["FPS"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/AntiAliasing" to="Canvas" method="change_settings" binds= ["AntiAliasing"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Shadows" to="Canvas" method="change_settings" binds= ["Shadows"]]
+[connection signal="pressed" from="Canvas/Settings/VBox/Grid/Cum" to="Canvas" method="change_settings" binds= ["Cum"]]
 [connection signal="pressed" from="Canvas/Settings/VBox/Button" to="Canvas" method="close_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button" to="Canvas" method="pause"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button2" to="Canvas" method="open_settings"]
 [connection signal="pressed" from="Canvas/Pause/VBox/Button3" to="Canvas" method="go_to_main_menu"]
+[connection signal="pressed" from="Canvas/WaveDuration/Button" to="Canvas" method="decrease_wave_duration"]
 [connection signal="pressed" from="Canvas/Start/VBox/Button" to="." method="start_new_game"]
-[connection signal="pressed" from="Canvas/Start/VBox/Button3" to="Canvas" method="open_skins"]
 [connection signal="pressed" from="Canvas/Start/VBox/Button2" to="Canvas" method="open_settings"]
 [connection signal="pressed" from="Canvas/Start/Skins/Orange" to="Canvas" method="select_skin" binds= ["Orange"]]
 [connection signal="pressed" from="Canvas/Start/Skins/Cyan" to="Canvas" method="select_skin" binds= ["Cyan"]]
@@ -2353,5 +2333,7 @@ text = "000"
 [connection signal="pressed" from="Canvas/Start/Skins/Bloody" to="Canvas" method="select_skin" binds= ["Bloody"]]
 [connection signal="pressed" from="Canvas/Start/Skins/Luxury" to="Canvas" method="select_skin" binds= ["Luxury"]]
 [connection signal="pressed" from="Canvas/Start/Skins/The Blackest" to="Canvas" method="select_skin" binds= ["The Blackest"]]
+[connection signal="pressed" from="Canvas/Start/Skills/EggHP" to="Canvas" method="buy_upgrade" binds= ["EggHP"]]
+[connection signal="pressed" from="Canvas/Start/Skills/CumBonus" to="Canvas" method="buy_upgrade" binds= ["CumBonus"]]
 [connection signal="pressed" from="Canvas/Start/Skills/GunFollow" to="Canvas" method="buy_upgrade" binds= ["GunFollow"]]
 [connection signal="pressed" from="Canvas/Start/Skills/TurrelFollow" to="Canvas" method="buy_upgrade" binds= ["TurrelFollow"]]

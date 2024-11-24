@@ -4,33 +4,39 @@ var direction : Vector3
 var target : Node3D
 var is_following := false
 var ricochet_count := 0
+var speed := 1.0
 
-# Called when the node enters the scene tree for the first time.
+const TIME_TO_DEATH := 7.0
+const TIME_TO_DEATH_FOLLOW := 30.0
+
 func _ready() -> void:
 	ricochet_count = Stats.acid_ricochet_count
+	apply_optimization()
 	await get_tree().create_timer(1.0).timeout
-	if !is_following:
-		await get_tree().create_timer(5.0).timeout
-		death()
+	await get_tree().create_timer(TIME_TO_DEATH if !is_following else TIME_TO_DEATH_FOLLOW).timeout
+	death()
 
-func update_size(size:float) -> void:
-	scale = Vector3(size,size,size)
+func apply_optimization() -> void:
+	$Mesh.visible = !Stats.optimized_cum
+	$Sprite.visible = Stats.optimized_cum
+	if Stats.optimized_cum:
+		$Sprite.texture = Stats.get_acid_texture()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if is_following:
 		if target != null:
-			global_position += (target.global_position - global_position).normalized() * Stats.acid_speed * delta
+			if global_position.distance_squared_to(target.global_position) < 1.23: kill_cum(target)
+			global_position += (target.global_position - global_position).normalized() * Stats.acid_speed * speed * delta
 		else:
 			death()
 	else:
-		global_position += direction * Stats.acid_speed * delta
+		global_position += direction * Stats.acid_speed * speed * delta
 
 func kill_cum(cum:Node3D) -> void:
 	cum.death()
-	Stats.cum_count += (1 if Stats.wave_duration == 60.0 else 2)
+	Stats.cum_count += (1 + Stats.cum_bonus) * (1 if Stats.wave_duration == 60.0 else 3)
 	$/root/World/Canvas.update_cums()
-	if ricochet_count == 0:
+	if ricochet_count <= 0:
 		death()
 	else:
 		var nearest_cum = get_nearest_cum()
@@ -43,6 +49,7 @@ func kill_cum(cum:Node3D) -> void:
 			nearest_cum.follow()
 		target = nearest_cum
 		ricochet_count -= 1
+		speed = 0.5
 
 func death() -> void:
 	queue_free()
@@ -55,9 +62,9 @@ func _on_area_area_entered(area: Area3D) -> void:
 
 func get_nearest_cum() -> Node3D:
 	var nearest : Node3D
-	var last_distance := 500000.0
+	var last_distance := 10000000.0
 	for cum in get_tree().get_nodes_in_group("Cum"):
-			if !cum.is_followed and global_position.distance_squared_to(cum.global_position) < last_distance:
+			if !cum.is_followed and cum.is_active and global_position.distance_squared_to(cum.global_position) < last_distance:
 				last_distance = global_position.distance_squared_to(cum.global_position)
 				nearest = cum
 	return nearest

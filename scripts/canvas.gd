@@ -19,21 +19,24 @@ extends CanvasLayer
 
 var is_stats_visible := true
 var is_paused := false
+var bonus_cost := 1
 
 var upgrades = {
-	"Turrel": [0, 10, 20, 1.5, 20, "c"],
-	"GunFollow": [0, 1, 25, 1, 10, "s"],
-	"GunCooldown": [0, 20, 6, 1.5, 6, "c"],
-	"TurrelFollow": [0, 1, 50, 1, 50, "s"],
-	"TurrelCooldown": [0, 30, 6, 1.5, 6, "c"],
-	"AcidSpeed": [0, 50, 5, 1.7, 5, "c"],
-	"AcidRicochet":[0, 3, 100, 50, 100, "c"],
-	"PlayerSize": [0, 25, 5, 1.5, 5, "c"]
+	"Turrel": [0, 10, 20, 2.1, 20, "c"],
+	"GunFollow": [0, 1, 40, 1, 40, "s"],
+	"GunCooldown": [0, 14, 6, 1.8, 6, "c"],
+	"TurrelFollow": [0, 1, 65, 1, 65, "s"],
+	"TurrelCooldown": [0, 30, 6, 1.7, 6, "c"],
+	"AcidSpeed": [0, 30, 5, 1.8, 5, "c"],
+	"AcidRicochet":[0, 3, 250, 25, 250, "c"],
+	"PlayerSize": [0, 25, 7, 1.9, 7, "c"],
+	"EggHP": [0, 10, 10, 2.0, 10, "s"],
+	"CumBonus": [0, 3, 10, 2.7, 10, "s"]
 }
 var settings = {
-	"AntiAliasing": [2, 2, "q"],
+	"AntiAliasing": [1, 2, "q"],
 	"Shadows": [2, 3, "t_q"],
-	"Sounds": [1, 1, "t"],
+	"Sounds": [2, 5, "so"],
 	"FPS": [0, 1, "t"],
 	"Cum": [0, 1, "t"],
 	"SmoothMouse": [0, 1, "t"],
@@ -54,8 +57,12 @@ var is_fps_showing : bool = false
 
 func _ready() -> void:
 	update_start()
+	update_stats()
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
+	if $/root/World.wave > 20 and Engine.get_frames_per_second() < 45:
+		settings["Cum"][0] = 1
+		setup_settings("Cum")
 	if !is_fps_showing: return
 	debug_label.text = str(Engine.get_frames_per_second())
 
@@ -67,9 +74,17 @@ func update_start() -> void:
 	update_skins()
 	update_passive_skills()
 	update_stars()
+	Stats.egg_hp = upgrades["EggHP"][0] + 1
+	Stats.cum_bonus = upgrades["CumBonus"][0]
+	Stats.gun_is_following = upgrades["GunFollow"][0] == 1
+	Stats.turrel_is_following = upgrades["TurrelFollow"][0] == 1
+	bonus_cost = 1
+	$WaveDuration/Button/Star.text = "[center]" + str(bonus_cost) + "[img=30]res://images/star.png[/img]+3 min[/center]"
 	highscore_label.text = "[wave amp=50.0 freq=2.0 connected=1][center]highscore " + str(Stats.highscore) + "[/center][/wave]"
 	for s in $Settings/VBox/Grid.get_children():
 		setup_settings(s.name)
+	$WaveDuration/Button/Ad.visible = OS.has_feature("crazygames")
+	$WaveDuration/Button/Star.visible = !OS.has_feature("crazygames")
 		
 func update_stars() -> void:
 	stars_label.text = str(Stats.star_count)
@@ -96,7 +111,8 @@ func update_ad() -> void:
 
 func update_task() -> void:
 	if $/root/World.wave_timer > 0:
-		task_label.text = "[center]protect the egg[/center]"
+		task_label.text = "[center]protect the egg [img=50]res://images/egg.png[/img]
+	"+str($/root/World.egg_health)+" hp[/center]"
 	else:
 		task_label.text = "[center]go to market[img=50]res://images/market.png[/img][/center]"
 	
@@ -122,7 +138,7 @@ func update_weapon() -> void:
 
 func update_stats() -> void:
 	if is_stats_visible:
-		stats_label.text = "[center][color=675f54]<tab> to hide stats[/color][/center]
+		stats_label.text = "[center][color=675f54]<t> to hide stats[/color][/center]
 	 [table=2]
 
 	[cell][color=fceba5]gun follows target[/color][/cell]   
@@ -135,14 +151,18 @@ func update_stats() -> void:
 	[cell]"+str(Stats.acid_speed)+"[/cell]
 	[cell][color=ffa224]acid ricochet count[/color][/cell]   
 	[cell]"+str(Stats.acid_ricochet_count)+"[/cell]
-	[cell][color=ff3965]turrel follow target[/color][/cell]   
+	[cell][color=ff3965]turret follows target[/color][/cell]   
 	[cell]"+("yes" if Stats.turrel_is_following else "no")+"[/cell]
-	[cell][color=ff3965]turrel cooldown[/color][/cell]   
+	[cell][color=ff3965]turret cooldown[/color][/cell]   
 	[cell]"+str(Stats.turrel_cooldown)+"[/cell]
+	[cell][color=ff3965]egg health[/color][/cell]   
+	[cell]"+str(Stats.egg_hp)+"[/cell]
+	[cell][color=cec5df]sperm reward[/color][/cell]   
+	[cell]"+str(Stats.cum_bonus + 1)+"[/cell]
 
 	[/table]"
 	else:
-		stats_label.text = "[center][color=675f54]<tab> to show stats[/color][/center]"
+		stats_label.text = "[center][color=675f54]<t> to show stats[/color][/center]"
 	
 func pause() -> void:
 	is_paused = !is_paused
@@ -192,6 +212,7 @@ func update_market() -> void:
 	
 func update_passive_skills() -> void:
 	for u in $Start/Skills.get_children():
+		upgrades[u.name][2] = int(upgrades[u.name][4] * pow(upgrades[u.name][3], upgrades[u.name][0]))
 		u.get_node("Stats/Label").text = str(upgrades[u.name][2]) + " " + str(upgrades[u.name][0]) + "/" + str(upgrades[u.name][1])
 		u.disabled = upgrades[u.name][0] == upgrades[u.name][1]
 		u.get_node("Stats/Label").visible = upgrades[u.name][0] != upgrades[u.name][1]
@@ -202,12 +223,14 @@ func buy_upgrade(button:String) -> void:
 	match button:
 		"Turrel": Stats.turrel_count += 1
 		"GunFollow": Stats.gun_is_following = true
-		"GunCooldown": Stats.gun_cooldown -= 0.1
+		"GunCooldown": Stats.gun_cooldown -= 0.05
 		"TurrelFollow": Stats.turrel_is_following = true
 		"TurrelCooldown": Stats.turrel_cooldown -= 0.1
 		"AcidSpeed": Stats.acid_speed += 5.0
 		"AcidRicochet": Stats.acid_ricochet_count += 1
 		"PlayerSize": Stats.player_size += 0.2
+		"EggHP": Stats.egg_hp += 1
+		"CumBonus": Stats.cum_bonus += 1
 	if upgrades[button][5] == "c": Stats.cum_count -= upgrades[button][2]
 	elif upgrades[button][5] == "s": Stats.star_count -= upgrades[button][2]
 	player.scale = Vector3(Stats.player_size, Stats.player_size, Stats.player_size)
@@ -233,7 +256,16 @@ func refresh_upgrades() -> void:
 			upgrades[u][2] = upgrades[u][4]
 	
 func decrease_wave_duration() -> void:
-	CrazySDK.request_ad()
+	if OS.has_feature("crazygames"):
+		CrazySDK.request_ad()
+	else:
+		if Stats.star_count < bonus_cost: return
+		Stats.star_count -= bonus_cost
+		bonus_cost += 1
+		$WaveDuration/Button/Star.text = "[center]" + str(bonus_cost) + "[img=30]res://images/star.png[/img]+3 min[/center]"
+		$/root/World.decrease_wave_duration()
+		update_stars()
+		CrazySDK.save_data()
 	
 func change_weapon() -> void:
 	gun.change_weapon()
@@ -252,12 +284,15 @@ func close_settings() -> void:
 		$Pause.visible = true
 	else:
 		$Start.visible = true
+	CrazySDK.save_data()
 	
 func update_settings() -> void:
 	for u in $Settings/VBox/Grid.get_children():
 		var value
 		if settings[u.name][2] == "s":
 			value = str(0.3 + 0.1 * settings[u.name][0])
+		elif settings[u.name][2] == "so":
+			value = str(0 + 1 * settings[u.name][0])
 		else:
 			match settings[u.name][0]:
 				0: 
@@ -303,6 +338,11 @@ func setup_settings(s) -> void:
 				3: RenderingServer.directional_shadow_atlas_set_size(8196, true)
 		"Sounds": 
 			var bus_idx = AudioServer.get_bus_index("Master")
+			var v : float = settings[s][0]
+			if settings[s][0] > 4: v *= 3
+			elif settings[s][0] > 2: v *= 2
+			elif settings[s][0] == 1: v /= 4.0
+			AudioServer.set_bus_volume_db(bus_idx, v)
 			AudioServer.set_bus_mute(bus_idx, settings[s][0] == 0)
 		"FPS":
 			is_fps_showing = settings[s][0] == 1
@@ -338,11 +378,15 @@ func apply_skin(s:String):
 	
 func capture_mouse() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-func _input(event: InputEvent) -> void:
+
+
+func stats() -> void:
+	is_stats_visible = !is_stats_visible
+	update_stats()
+		
+func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("show_hide_stats"):
-		is_stats_visible = !is_stats_visible
-		update_stats()
+		stats()
 	elif Input.is_action_just_pressed("pause") and player.is_active and $/root/World.is_in_game:
 		pause()
 	if Input.is_action_just_pressed("esc"):
